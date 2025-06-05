@@ -1,0 +1,102 @@
+# Prefácio {.unnumbered}
+
+Arquivo que irá servir para armazenar os conteúdos vistos na *Disciplina* da **Falculdade de Estatística** da Universidade Federal do Pará.
+
+# Introdução
+
+```{python, echo=false}
+# Tratamentos de Dados
+import numpy as np
+import pandas as pd
+
+# Funções Estatísticas
+from scipy import stats
+
+# Visualizações Gráficas
+import matplotlib.pyplot as plt
+import seaborn as sns
+```
+
+## Ferramentas Básicas do Controle da Qualidade
+
+As sete ferramentas da qualidae são técnicas estatísticas simples para resolver problemas na indústria.✅
+
+- Estratificação
+- Folhas de Verificação
+- Diagrama de Ishikawa
+- Histograma
+- Diagrama de Pareto
+- Gráfico de Dispersão
+- Gráfico de Controle
+
+### Estratificação
+
+É uma técnica usada para **separar dados em grupos significativos** para facilitar a análise.
+
+- Permite observar padrões escondidos em dados mistos.
+- Ajuda identificar **fontes de variação**.
+
+```{python, echo=false}
+# Geração de Dados: Exemplo de Dados Estratificados
+np.random.seed(11111)
+group1_size = 30
+group1_x = np.random.normal(loc=10, scale=2.5, size=group1_size)
+group1_y = np.random.normal(loc=20, scale=3.5, size=group1_size)
+
+group2_size = 40
+group2_x = np.random.normal(loc=20, scale=3.5, size=group2_size)
+group2_y = np.random.normal(loc=30, scale=4.5, size=group2_size)
+
+group3_size = 30
+group3_x = np.random.normal(loc=30, scale=4.5, size=group3_size)
+group3_y = np.random.normal(loc=15, scale=2.5, size=group3_size)
+
+df = pd.DataFrame({
+    "x": np.concatenate([group1_x, group2_x, group3_x]),
+    "y": np.concatenate([group1_y, group2_y, group3_y]),
+    "Grupo": ["Grupo A"] * group1_size + ["Grupo B"] * group2_size + ["Grupo C"] * group3_size
+})
+
+# Configurações de Figura
+fig, ax = plt.subplots(figsize=(6, 4), dpi=600)
+
+# Scatterplot
+sns.scatterplot(x="x", y="y", data=df, hue="Grupo", palette="viridis", s=100, ax=ax)
+
+# Configurações de eixos e títulos
+ax.set_xlabel("X", fontsize=12)
+ax.set_ylabel("y", fontsize=12)
+
+# Configurações de legenda
+ax.legend(loc="upper right", frameon=False)
+
+# Outras configurações
+ax.spines["top"].set_visible(False)
+ax.spines["right"].set_visible(False)
+
+# Exibição do gráfico
+plt.show()
+```
+
+#### Definição de Estratificação
+
+> "*Processo de **dividir dados em subgrupos (estratos)** com base em características relevantes como turno, máquina, operador, etc.*"
+
+- **Exemplo:** Existe diferênça de desempenho entre os turnos?
+
+#### Tipos de Estratificação
+
+- Por **tempo:** turno, dia da semana, mês;
+- Por **local:** máquina, setor, linha de produção;
+- Por **pessoas:** operador, equipe;
+- Por **método** ou **material**.
+
+
+Exemplos de Tipos de Estratificação
+
+| **Tipo** | **Exemplo**   |
+| -------- | -----------   |
+| Tempo    | Turno         |
+| Local    | Máquina       |
+| Pessoa   | Operador      |
+| Método   | Matéria-prima |

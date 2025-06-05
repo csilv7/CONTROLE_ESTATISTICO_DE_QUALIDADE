@@ -1,0 +1,58 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Controle Estatístico de Qualidade"
+  
+  author:
+  - name: "Breno Cauã Rodrigues da Silva"
+    orcid: 0009-0005-9740-2069
+    affiliations:
+      - name: "Universidade Federal do Pará"
+      - name: "Instituto de Ciências Exatas e Naturais"
+      - name: "Falculdade de Estatística"
+      
+  page-footer:
+    left: |
+      **SILVA, B.C.R**
+    right: |
+      Construído usando o <a href="https://quarto.org/"> Pacote Quarto</a>.
+  
+  date: "05/06/2025"
+
+  description: "Material de apoio para a disciplina de Controle Estatístico de Qualidade"
+
+  downloads: [pdf, docx]
+  sharing: [twitter, facebook]
+  page-navigation: true
+
+  chapters:
+    - index.qmd
+    - summary.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    number-sections: true
+    toc: true
+    toc-depth: 2
+    toc-title: "Índice"
+    code-fold: true
+    code-tools: true
+    code-copy: true
+    theme:
+      - cosmo
+      - brand
+  pdf:
+    documentclass: scrreprt
+    fig-pos: "H"
+    number-sections: true
+    pdf-engine: xelatex
+    indent: true
+    header-includes: |
+      \usepackage{indentfirst}
+    fontsize: 12pt
+    geometry: [left=2cm, top=2cm, right=2cm, bottom=2cm]
