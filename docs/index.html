@@ -56,7 +56,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -346,8 +366,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./ControlChart.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Gráficos de Controle</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./Exercises.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Listas e Exercícios</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Listas e Exercícios</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -437,6 +463,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="introdução" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Introdução</h1>
 <p>Material de apoio para a disciplina de <strong>Controle Estatístico de Qualidade</strong> da <em>Falculdade de Estatística</em> (FAEST) da <em>Universidade Federal do Pará</em> (UFPA).</p>
+<p>Para esta etapa inicial foram usadas as referências:</p>
+<ul>
+<li><span class="citation" data-cites="montgomery2013controle">Montgomery (<a href="references.html#ref-montgomery2013controle" role="doc-biblioref">2013</a>)</span></li>
+<li><span class="citation" data-cites="mermaidjs"><span>“Mermaid.js”</span> (<a href="references.html#ref-mermaidjs" role="doc-biblioref">s.d.</a>)</span></li>
+</ul>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -788,7 +819,7 @@ Figura&nbsp;1.4: Exemplo 2 de Simulação de Dados Estratificados em R.
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/FOLHA_VERIF.png" class="img-fluid figure-img"></p>
-<figcaption>Exemplo de folha de verificação de defeitos na lataria de um carro.</figcaption>
+<figcaption><strong>Exemplo de folha de verificação de defeitos na lataria de um carro.</strong></figcaption>
 </figure>
 </div>
 <div class="columns">
@@ -887,7 +918,7 @@ Figura&nbsp;1.6: Exemplo Gráfico da Folha de Verificação em R.
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/DIAGRAM_ISHIKAWA.png" class="img-fluid figure-img"></p>
-<figcaption>Exemplo de diagrama de causa e efeito (Ishikawa).</figcaption>
+<figcaption><strong>Exemplo de diagrama de causa e efeito (Ishikawa).</strong></figcaption>
 </figure>
 </div>
 <div class="progress">
@@ -899,6 +930,14 @@ Figura&nbsp;1.6: Exemplo Gráfico da Folha de Verificação em R.
 
 <!-- -->
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-mermaidjs" class="csl-entry" role="listitem">
+<span>“Mermaid.js”</span>. s.d. <a href="https://csilv7.atlassian.net/wiki/spaces/~71202019d1c3fc8d434cb59c0a9a68051b55ca/overview?homepageId=65794" class="uri">https://csilv7.atlassian.net/wiki/spaces/~71202019d1c3fc8d434cb59c0a9a68051b55ca/overview?homepageId=65794</a>.
+</div>
+<div id="ref-montgomery2013controle" class="csl-entry" role="listitem">
+Montgomery, Douglas C. 2013. <em>Introdução ao Controle Estatístico da Qualidade</em>. Rio de Janeiro: LTC.
+</div>
+</div>
 </section>
 </section>
 </section>
@@ -1392,369 +1431,374 @@ Figura&nbsp;1.6: Exemplo Gráfico da Folha de Verificação em R.
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>Material de apoio para a disciplina de **Controle Estatístico de Qualidade** da *Falculdade de Estatística* (FAEST) da *Universidade Federal do Pará* (UFPA).</span>
 <span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: Configuration R</span></span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Pacotes necessários</span></span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="fu">use_python</span>(<span class="st">"C:/Users/user/anaconda3/python.exe"</span>, <span class="at">required =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: Configuration Python</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>Para esta etapa inicial foram usadas as referências:</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>@montgomery2013controle</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>@mermaidjs</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: Configuration R</span></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Pacotes necessários</span></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="fu">use_python</span>(<span class="st">"C:/Users/user/anaconda3/python.exe"</span>, <span class="at">required =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Tratamentos de Dados</span></span>
-<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Funções Estatísticas</span></span>
-<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
-<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizações Gráficas</span></span>
-<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: Configuration Python</span></span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Tratamentos de Dados</span></span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Funções Estatísticas</span></span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
 <span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a><span class="fu">## Ferramentas Básicas do Controle da Qualidade</span></span>
-<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a>As sete ferramentas da qualidae são técnicas estatísticas simples para resolver problemas na indústria.✅</span>
-<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Estratificação</span>
-<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Folhas de Verificação</span>
-<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Diagrama de Ishikawa</span>
-<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Histograma</span>
-<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Diagrama de Pareto</span>
-<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Gráfico de Dispersão</span>
-<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Gráfico de Controle</span>
-<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a><span class="fu">### Estratificação</span></span>
-<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a>É uma técnica usada para **separar dados em grupos significativos** para facilitar a análise.</span>
-<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Permite observar padrões escondidos em dados mistos.</span>
-<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Ajuda identificar **fontes de variação**.</span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizações Gráficas</span></span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a><span class="fu">## Ferramentas Básicas do Controle da Qualidade</span></span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a>As sete ferramentas da qualidae são técnicas estatísticas simples para resolver problemas na indústria.✅</span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Estratificação</span>
+<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Folhas de Verificação</span>
+<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Diagrama de Ishikawa</span>
+<span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Histograma</span>
+<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Diagrama de Pareto</span>
+<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Gráfico de Dispersão</span>
+<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Gráfico de Controle</span>
+<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a><span class="fu">### Estratificação</span></span>
 <span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a>::::: columns</span>
-<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a>::: {.column width="50%"}</span>
-<span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-ExampleStratPy</span></span>
-<span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Exemplo de Simulação de Dados Estratificados em Python."</span></span>
-<span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap-location: bottom</span></span>
-<span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 6</span></span>
-<span id="cb10-76"><a href="#cb10-76" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 4</span></span>
-<span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a><span class="co"># Geração de Dados: Exemplo de Dados Estratificados</span></span>
-<span id="cb10-79"><a href="#cb10-79" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">11111</span>)</span>
-<span id="cb10-80"><a href="#cb10-80" aria-hidden="true" tabindex="-1"></a>group1_size <span class="op">=</span> <span class="dv">30</span></span>
-<span id="cb10-81"><a href="#cb10-81" aria-hidden="true" tabindex="-1"></a>group1_x <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="dv">10</span>, scale<span class="op">=</span><span class="fl">2.5</span>, size<span class="op">=</span>group1_size)</span>
-<span id="cb10-82"><a href="#cb10-82" aria-hidden="true" tabindex="-1"></a>group1_y <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="dv">20</span>, scale<span class="op">=</span><span class="fl">3.5</span>, size<span class="op">=</span>group1_size)</span>
-<span id="cb10-83"><a href="#cb10-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a>group2_size <span class="op">=</span> <span class="dv">40</span></span>
-<span id="cb10-85"><a href="#cb10-85" aria-hidden="true" tabindex="-1"></a>group2_x <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="dv">20</span>, scale<span class="op">=</span><span class="fl">3.5</span>, size<span class="op">=</span>group2_size)</span>
-<span id="cb10-86"><a href="#cb10-86" aria-hidden="true" tabindex="-1"></a>group2_y <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="dv">30</span>, scale<span class="op">=</span><span class="fl">4.5</span>, size<span class="op">=</span>group2_size)</span>
-<span id="cb10-87"><a href="#cb10-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-88"><a href="#cb10-88" aria-hidden="true" tabindex="-1"></a>group3_size <span class="op">=</span> <span class="dv">30</span></span>
-<span id="cb10-89"><a href="#cb10-89" aria-hidden="true" tabindex="-1"></a>group3_x <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="dv">30</span>, scale<span class="op">=</span><span class="fl">4.5</span>, size<span class="op">=</span>group3_size)</span>
-<span id="cb10-90"><a href="#cb10-90" aria-hidden="true" tabindex="-1"></a>group3_y <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="dv">15</span>, scale<span class="op">=</span><span class="fl">2.5</span>, size<span class="op">=</span>group3_size)</span>
-<span id="cb10-91"><a href="#cb10-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-92"><a href="#cb10-92" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb10-93"><a href="#cb10-93" aria-hidden="true" tabindex="-1"></a>    <span class="st">"x"</span>: np.concatenate([group1_x, group2_x, group3_x]),</span>
-<span id="cb10-94"><a href="#cb10-94" aria-hidden="true" tabindex="-1"></a>    <span class="st">"y"</span>: np.concatenate([group1_y, group2_y, group3_y]),</span>
-<span id="cb10-95"><a href="#cb10-95" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Grupo"</span>: [<span class="st">"Grupo A"</span>] <span class="op">*</span> group1_size <span class="op">+</span> [<span class="st">"Grupo B"</span>] <span class="op">*</span> group2_size <span class="op">+</span> [<span class="st">"Grupo C"</span>] <span class="op">*</span> group3_size</span>
-<span id="cb10-96"><a href="#cb10-96" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb10-97"><a href="#cb10-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-98"><a href="#cb10-98" aria-hidden="true" tabindex="-1"></a><span class="co"># Configurações de Figura</span></span>
-<span id="cb10-99"><a href="#cb10-99" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>), dpi<span class="op">=</span><span class="dv">600</span>)</span>
-<span id="cb10-100"><a href="#cb10-100" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-101"><a href="#cb10-101" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatterplot</span></span>
-<span id="cb10-102"><a href="#cb10-102" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span><span class="st">"x"</span>, y<span class="op">=</span><span class="st">"y"</span>, data<span class="op">=</span>df, hue<span class="op">=</span><span class="st">"Grupo"</span>, palette<span class="op">=</span><span class="st">"viridis"</span>, s<span class="op">=</span><span class="dv">100</span>, ax<span class="op">=</span>ax)</span>
-<span id="cb10-103"><a href="#cb10-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-104"><a href="#cb10-104" aria-hidden="true" tabindex="-1"></a><span class="co"># Configurações de eixos e títulos</span></span>
-<span id="cb10-105"><a href="#cb10-105" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"X"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb10-106"><a href="#cb10-106" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"y"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb10-107"><a href="#cb10-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-108"><a href="#cb10-108" aria-hidden="true" tabindex="-1"></a><span class="co"># Configurações de legenda</span></span>
-<span id="cb10-109"><a href="#cb10-109" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">"upper right"</span>, frameon<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb10-110"><a href="#cb10-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-111"><a href="#cb10-111" aria-hidden="true" tabindex="-1"></a><span class="co"># Outras configurações</span></span>
-<span id="cb10-112"><a href="#cb10-112" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">"top"</span>].set_visible(<span class="va">False</span>)</span>
-<span id="cb10-113"><a href="#cb10-113" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">"right"</span>].set_visible(<span class="va">False</span>)</span>
-<span id="cb10-114"><a href="#cb10-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-115"><a href="#cb10-115" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibição do gráfico</span></span>
-<span id="cb10-116"><a href="#cb10-116" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb10-117"><a href="#cb10-117" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-118"><a href="#cb10-118" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a>É uma técnica usada para **separar dados em grupos significativos** para facilitar a análise.</span>
+<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-69"><a href="#cb10-69" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Permite observar padrões escondidos em dados mistos.</span>
+<span id="cb10-70"><a href="#cb10-70" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Ajuda identificar **fontes de variação**.</span>
+<span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a>::::: columns</span>
+<span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a>::: {.column width="50%"}</span>
+<span id="cb10-76"><a href="#cb10-76" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-ExampleStratPy</span></span>
+<span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Exemplo de Simulação de Dados Estratificados em Python."</span></span>
+<span id="cb10-79"><a href="#cb10-79" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap-location: bottom</span></span>
+<span id="cb10-80"><a href="#cb10-80" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 6</span></span>
+<span id="cb10-81"><a href="#cb10-81" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 4</span></span>
+<span id="cb10-82"><a href="#cb10-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-83"><a href="#cb10-83" aria-hidden="true" tabindex="-1"></a><span class="co"># Geração de Dados: Exemplo de Dados Estratificados</span></span>
+<span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">11111</span>)</span>
+<span id="cb10-85"><a href="#cb10-85" aria-hidden="true" tabindex="-1"></a>group1_size <span class="op">=</span> <span class="dv">30</span></span>
+<span id="cb10-86"><a href="#cb10-86" aria-hidden="true" tabindex="-1"></a>group1_x <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="dv">10</span>, scale<span class="op">=</span><span class="fl">2.5</span>, size<span class="op">=</span>group1_size)</span>
+<span id="cb10-87"><a href="#cb10-87" aria-hidden="true" tabindex="-1"></a>group1_y <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="dv">20</span>, scale<span class="op">=</span><span class="fl">3.5</span>, size<span class="op">=</span>group1_size)</span>
+<span id="cb10-88"><a href="#cb10-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-89"><a href="#cb10-89" aria-hidden="true" tabindex="-1"></a>group2_size <span class="op">=</span> <span class="dv">40</span></span>
+<span id="cb10-90"><a href="#cb10-90" aria-hidden="true" tabindex="-1"></a>group2_x <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="dv">20</span>, scale<span class="op">=</span><span class="fl">3.5</span>, size<span class="op">=</span>group2_size)</span>
+<span id="cb10-91"><a href="#cb10-91" aria-hidden="true" tabindex="-1"></a>group2_y <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="dv">30</span>, scale<span class="op">=</span><span class="fl">4.5</span>, size<span class="op">=</span>group2_size)</span>
+<span id="cb10-92"><a href="#cb10-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-93"><a href="#cb10-93" aria-hidden="true" tabindex="-1"></a>group3_size <span class="op">=</span> <span class="dv">30</span></span>
+<span id="cb10-94"><a href="#cb10-94" aria-hidden="true" tabindex="-1"></a>group3_x <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="dv">30</span>, scale<span class="op">=</span><span class="fl">4.5</span>, size<span class="op">=</span>group3_size)</span>
+<span id="cb10-95"><a href="#cb10-95" aria-hidden="true" tabindex="-1"></a>group3_y <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="dv">15</span>, scale<span class="op">=</span><span class="fl">2.5</span>, size<span class="op">=</span>group3_size)</span>
+<span id="cb10-96"><a href="#cb10-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-97"><a href="#cb10-97" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb10-98"><a href="#cb10-98" aria-hidden="true" tabindex="-1"></a>    <span class="st">"x"</span>: np.concatenate([group1_x, group2_x, group3_x]),</span>
+<span id="cb10-99"><a href="#cb10-99" aria-hidden="true" tabindex="-1"></a>    <span class="st">"y"</span>: np.concatenate([group1_y, group2_y, group3_y]),</span>
+<span id="cb10-100"><a href="#cb10-100" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Grupo"</span>: [<span class="st">"Grupo A"</span>] <span class="op">*</span> group1_size <span class="op">+</span> [<span class="st">"Grupo B"</span>] <span class="op">*</span> group2_size <span class="op">+</span> [<span class="st">"Grupo C"</span>] <span class="op">*</span> group3_size</span>
+<span id="cb10-101"><a href="#cb10-101" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb10-102"><a href="#cb10-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-103"><a href="#cb10-103" aria-hidden="true" tabindex="-1"></a><span class="co"># Configurações de Figura</span></span>
+<span id="cb10-104"><a href="#cb10-104" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>), dpi<span class="op">=</span><span class="dv">600</span>)</span>
+<span id="cb10-105"><a href="#cb10-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-106"><a href="#cb10-106" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatterplot</span></span>
+<span id="cb10-107"><a href="#cb10-107" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span><span class="st">"x"</span>, y<span class="op">=</span><span class="st">"y"</span>, data<span class="op">=</span>df, hue<span class="op">=</span><span class="st">"Grupo"</span>, palette<span class="op">=</span><span class="st">"viridis"</span>, s<span class="op">=</span><span class="dv">100</span>, ax<span class="op">=</span>ax)</span>
+<span id="cb10-108"><a href="#cb10-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-109"><a href="#cb10-109" aria-hidden="true" tabindex="-1"></a><span class="co"># Configurações de eixos e títulos</span></span>
+<span id="cb10-110"><a href="#cb10-110" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"X"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb10-111"><a href="#cb10-111" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"y"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb10-112"><a href="#cb10-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-113"><a href="#cb10-113" aria-hidden="true" tabindex="-1"></a><span class="co"># Configurações de legenda</span></span>
+<span id="cb10-114"><a href="#cb10-114" aria-hidden="true" tabindex="-1"></a>ax.legend(loc<span class="op">=</span><span class="st">"upper right"</span>, frameon<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb10-115"><a href="#cb10-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-116"><a href="#cb10-116" aria-hidden="true" tabindex="-1"></a><span class="co"># Outras configurações</span></span>
+<span id="cb10-117"><a href="#cb10-117" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">"top"</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb10-118"><a href="#cb10-118" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">"right"</span>].set_visible(<span class="va">False</span>)</span>
 <span id="cb10-119"><a href="#cb10-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-120"><a href="#cb10-120" aria-hidden="true" tabindex="-1"></a>::: {.column width="50%"}</span>
-<span id="cb10-123"><a href="#cb10-123" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb10-124"><a href="#cb10-124" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-ExampleStratR</span></span>
-<span id="cb10-125"><a href="#cb10-125" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Exemplo de Simulação de Dados Estratificados em R."</span></span>
-<span id="cb10-126"><a href="#cb10-126" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap-location: bottom</span></span>
-<span id="cb10-127"><a href="#cb10-127" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 6</span></span>
-<span id="cb10-128"><a href="#cb10-128" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 4</span></span>
-<span id="cb10-129"><a href="#cb10-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-130"><a href="#cb10-130" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir semente</span></span>
-<span id="cb10-131"><a href="#cb10-131" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">11111</span>)</span>
-<span id="cb10-132"><a href="#cb10-132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-133"><a href="#cb10-133" aria-hidden="true" tabindex="-1"></a><span class="co"># Grupo A</span></span>
-<span id="cb10-134"><a href="#cb10-134" aria-hidden="true" tabindex="-1"></a>group1_size <span class="ot">&lt;-</span> <span class="dv">30</span></span>
-<span id="cb10-135"><a href="#cb10-135" aria-hidden="true" tabindex="-1"></a>group1_x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(group1_size, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="fl">2.5</span>)</span>
-<span id="cb10-136"><a href="#cb10-136" aria-hidden="true" tabindex="-1"></a>group1_y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(group1_size, <span class="at">mean =</span> <span class="dv">20</span>, <span class="at">sd =</span> <span class="fl">3.5</span>)</span>
+<span id="cb10-120"><a href="#cb10-120" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibição do gráfico</span></span>
+<span id="cb10-121"><a href="#cb10-121" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb10-122"><a href="#cb10-122" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-123"><a href="#cb10-123" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb10-124"><a href="#cb10-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-125"><a href="#cb10-125" aria-hidden="true" tabindex="-1"></a>::: {.column width="50%"}</span>
+<span id="cb10-128"><a href="#cb10-128" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-129"><a href="#cb10-129" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-ExampleStratR</span></span>
+<span id="cb10-130"><a href="#cb10-130" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Exemplo de Simulação de Dados Estratificados em R."</span></span>
+<span id="cb10-131"><a href="#cb10-131" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap-location: bottom</span></span>
+<span id="cb10-132"><a href="#cb10-132" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 6</span></span>
+<span id="cb10-133"><a href="#cb10-133" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 4</span></span>
+<span id="cb10-134"><a href="#cb10-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-135"><a href="#cb10-135" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir semente</span></span>
+<span id="cb10-136"><a href="#cb10-136" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">11111</span>)</span>
 <span id="cb10-137"><a href="#cb10-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-138"><a href="#cb10-138" aria-hidden="true" tabindex="-1"></a><span class="co"># Grupo B</span></span>
-<span id="cb10-139"><a href="#cb10-139" aria-hidden="true" tabindex="-1"></a>group2_size <span class="ot">&lt;-</span> <span class="dv">40</span></span>
-<span id="cb10-140"><a href="#cb10-140" aria-hidden="true" tabindex="-1"></a>group2_x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(group2_size, <span class="at">mean =</span> <span class="dv">20</span>, <span class="at">sd =</span> <span class="fl">3.5</span>)</span>
-<span id="cb10-141"><a href="#cb10-141" aria-hidden="true" tabindex="-1"></a>group2_y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(group2_size, <span class="at">mean =</span> <span class="dv">30</span>, <span class="at">sd =</span> <span class="fl">4.5</span>)</span>
+<span id="cb10-138"><a href="#cb10-138" aria-hidden="true" tabindex="-1"></a><span class="co"># Grupo A</span></span>
+<span id="cb10-139"><a href="#cb10-139" aria-hidden="true" tabindex="-1"></a>group1_size <span class="ot">&lt;-</span> <span class="dv">30</span></span>
+<span id="cb10-140"><a href="#cb10-140" aria-hidden="true" tabindex="-1"></a>group1_x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(group1_size, <span class="at">mean =</span> <span class="dv">10</span>, <span class="at">sd =</span> <span class="fl">2.5</span>)</span>
+<span id="cb10-141"><a href="#cb10-141" aria-hidden="true" tabindex="-1"></a>group1_y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(group1_size, <span class="at">mean =</span> <span class="dv">20</span>, <span class="at">sd =</span> <span class="fl">3.5</span>)</span>
 <span id="cb10-142"><a href="#cb10-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-143"><a href="#cb10-143" aria-hidden="true" tabindex="-1"></a><span class="co"># Grupo C</span></span>
-<span id="cb10-144"><a href="#cb10-144" aria-hidden="true" tabindex="-1"></a>group3_size <span class="ot">&lt;-</span> <span class="dv">30</span></span>
-<span id="cb10-145"><a href="#cb10-145" aria-hidden="true" tabindex="-1"></a>group3_x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(group3_size, <span class="at">mean =</span> <span class="dv">30</span>, <span class="at">sd =</span> <span class="fl">4.5</span>)</span>
-<span id="cb10-146"><a href="#cb10-146" aria-hidden="true" tabindex="-1"></a>group3_y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(group3_size, <span class="at">mean =</span> <span class="dv">15</span>, <span class="at">sd =</span> <span class="fl">2.5</span>)</span>
+<span id="cb10-143"><a href="#cb10-143" aria-hidden="true" tabindex="-1"></a><span class="co"># Grupo B</span></span>
+<span id="cb10-144"><a href="#cb10-144" aria-hidden="true" tabindex="-1"></a>group2_size <span class="ot">&lt;-</span> <span class="dv">40</span></span>
+<span id="cb10-145"><a href="#cb10-145" aria-hidden="true" tabindex="-1"></a>group2_x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(group2_size, <span class="at">mean =</span> <span class="dv">20</span>, <span class="at">sd =</span> <span class="fl">3.5</span>)</span>
+<span id="cb10-146"><a href="#cb10-146" aria-hidden="true" tabindex="-1"></a>group2_y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(group2_size, <span class="at">mean =</span> <span class="dv">30</span>, <span class="at">sd =</span> <span class="fl">4.5</span>)</span>
 <span id="cb10-147"><a href="#cb10-147" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-148"><a href="#cb10-148" aria-hidden="true" tabindex="-1"></a><span class="co"># DataFrame unificado</span></span>
-<span id="cb10-149"><a href="#cb10-149" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb10-150"><a href="#cb10-150" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">c</span>(group1_x, group2_x, group3_x),</span>
-<span id="cb10-151"><a href="#cb10-151" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(group1_y, group2_y, group3_y),</span>
-<span id="cb10-152"><a href="#cb10-152" aria-hidden="true" tabindex="-1"></a>  <span class="at">Grupo =</span> <span class="fu">factor</span>(<span class="fu">c</span>(</span>
-<span id="cb10-153"><a href="#cb10-153" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rep</span>(<span class="st">"Grupo A"</span>, group1_size),</span>
-<span id="cb10-154"><a href="#cb10-154" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rep</span>(<span class="st">"Grupo B"</span>, group2_size),</span>
-<span id="cb10-155"><a href="#cb10-155" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rep</span>(<span class="st">"Grupo C"</span>, group3_size)</span>
-<span id="cb10-156"><a href="#cb10-156" aria-hidden="true" tabindex="-1"></a>  ))</span>
-<span id="cb10-157"><a href="#cb10-157" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb10-158"><a href="#cb10-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-159"><a href="#cb10-159" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico com ggplot2</span></span>
-<span id="cb10-160"><a href="#cb10-160" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">color =</span> Grupo)) <span class="sc">+</span></span>
-<span id="cb10-161"><a href="#cb10-161" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb10-162"><a href="#cb10-162" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>() <span class="sc">+</span></span>
-<span id="cb10-163"><a href="#cb10-163" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"X"</span>, <span class="at">y =</span> <span class="st">"y"</span>, <span class="at">color =</span> <span class="st">"Grupo"</span>) <span class="sc">+</span></span>
-<span id="cb10-164"><a href="#cb10-164" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
-<span id="cb10-165"><a href="#cb10-165" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb10-166"><a href="#cb10-166" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"top"</span>,</span>
-<span id="cb10-167"><a href="#cb10-167" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb10-168"><a href="#cb10-168" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"gray90"</span>),</span>
-<span id="cb10-169"><a href="#cb10-169" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"black"</span>),</span>
-<span id="cb10-170"><a href="#cb10-170" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.ticks =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"black"</span>),</span>
-<span id="cb10-171"><a href="#cb10-171" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.border =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb10-172"><a href="#cb10-172" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb10-173"><a href="#cb10-173" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-174"><a href="#cb10-174" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb10-175"><a href="#cb10-175" aria-hidden="true" tabindex="-1"></a>:::::</span>
-<span id="cb10-176"><a href="#cb10-176" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-177"><a href="#cb10-177" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Definição de Estratificação</span></span>
-<span id="cb10-178"><a href="#cb10-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-179"><a href="#cb10-179" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; "*Processo de **dividir dados em subgrupos (estratos)** com base em características relevantes como turno, máquina, operador, etc.*"</span></span>
-<span id="cb10-180"><a href="#cb10-180" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-181"><a href="#cb10-181" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Exemplo:** Existe diferênça de desempenho entre os turnos?</span>
-<span id="cb10-182"><a href="#cb10-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-183"><a href="#cb10-183" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Tipos de Estratificação</span></span>
-<span id="cb10-184"><a href="#cb10-184" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-185"><a href="#cb10-185" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Por **tempo:** turno, dia da semana, mês;</span>
-<span id="cb10-186"><a href="#cb10-186" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Por **local:** máquina, setor, linha de produção;</span>
-<span id="cb10-187"><a href="#cb10-187" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Por **pessoas:** operador, equipe;</span>
-<span id="cb10-188"><a href="#cb10-188" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Por **método** ou **material**.</span>
+<span id="cb10-148"><a href="#cb10-148" aria-hidden="true" tabindex="-1"></a><span class="co"># Grupo C</span></span>
+<span id="cb10-149"><a href="#cb10-149" aria-hidden="true" tabindex="-1"></a>group3_size <span class="ot">&lt;-</span> <span class="dv">30</span></span>
+<span id="cb10-150"><a href="#cb10-150" aria-hidden="true" tabindex="-1"></a>group3_x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(group3_size, <span class="at">mean =</span> <span class="dv">30</span>, <span class="at">sd =</span> <span class="fl">4.5</span>)</span>
+<span id="cb10-151"><a href="#cb10-151" aria-hidden="true" tabindex="-1"></a>group3_y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(group3_size, <span class="at">mean =</span> <span class="dv">15</span>, <span class="at">sd =</span> <span class="fl">2.5</span>)</span>
+<span id="cb10-152"><a href="#cb10-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-153"><a href="#cb10-153" aria-hidden="true" tabindex="-1"></a><span class="co"># DataFrame unificado</span></span>
+<span id="cb10-154"><a href="#cb10-154" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb10-155"><a href="#cb10-155" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">c</span>(group1_x, group2_x, group3_x),</span>
+<span id="cb10-156"><a href="#cb10-156" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(group1_y, group2_y, group3_y),</span>
+<span id="cb10-157"><a href="#cb10-157" aria-hidden="true" tabindex="-1"></a>  <span class="at">Grupo =</span> <span class="fu">factor</span>(<span class="fu">c</span>(</span>
+<span id="cb10-158"><a href="#cb10-158" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rep</span>(<span class="st">"Grupo A"</span>, group1_size),</span>
+<span id="cb10-159"><a href="#cb10-159" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rep</span>(<span class="st">"Grupo B"</span>, group2_size),</span>
+<span id="cb10-160"><a href="#cb10-160" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rep</span>(<span class="st">"Grupo C"</span>, group3_size)</span>
+<span id="cb10-161"><a href="#cb10-161" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb10-162"><a href="#cb10-162" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-163"><a href="#cb10-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-164"><a href="#cb10-164" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico com ggplot2</span></span>
+<span id="cb10-165"><a href="#cb10-165" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">color =</span> Grupo)) <span class="sc">+</span></span>
+<span id="cb10-166"><a href="#cb10-166" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb10-167"><a href="#cb10-167" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>() <span class="sc">+</span></span>
+<span id="cb10-168"><a href="#cb10-168" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"X"</span>, <span class="at">y =</span> <span class="st">"y"</span>, <span class="at">color =</span> <span class="st">"Grupo"</span>) <span class="sc">+</span></span>
+<span id="cb10-169"><a href="#cb10-169" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb10-170"><a href="#cb10-170" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb10-171"><a href="#cb10-171" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"top"</span>,</span>
+<span id="cb10-172"><a href="#cb10-172" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb10-173"><a href="#cb10-173" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"gray90"</span>),</span>
+<span id="cb10-174"><a href="#cb10-174" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"black"</span>),</span>
+<span id="cb10-175"><a href="#cb10-175" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.ticks =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"black"</span>),</span>
+<span id="cb10-176"><a href="#cb10-176" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.border =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb10-177"><a href="#cb10-177" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-178"><a href="#cb10-178" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-179"><a href="#cb10-179" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb10-180"><a href="#cb10-180" aria-hidden="true" tabindex="-1"></a>:::::</span>
+<span id="cb10-181"><a href="#cb10-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-182"><a href="#cb10-182" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Definição de Estratificação</span></span>
+<span id="cb10-183"><a href="#cb10-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-184"><a href="#cb10-184" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; "*Processo de **dividir dados em subgrupos (estratos)** com base em características relevantes como turno, máquina, operador, etc.*"</span></span>
+<span id="cb10-185"><a href="#cb10-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-186"><a href="#cb10-186" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Exemplo:** Existe diferênça de desempenho entre os turnos?</span>
+<span id="cb10-187"><a href="#cb10-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-188"><a href="#cb10-188" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Tipos de Estratificação</span></span>
 <span id="cb10-189"><a href="#cb10-189" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-192"><a href="#cb10-192" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb10-193"><a href="#cb10-193" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-ExamplesStrats</span></span>
-<span id="cb10-194"><a href="#cb10-194" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Exemplos de Tipos de Estratificação."</span></span>
-<span id="cb10-195"><a href="#cb10-195" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-196"><a href="#cb10-196" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb10-197"><a href="#cb10-197" aria-hidden="true" tabindex="-1"></a>    <span class="at">Tipo =</span> <span class="fu">c</span>(<span class="st">"Tempo"</span>, <span class="st">"Local"</span>, <span class="st">"Pessoa"</span>, <span class="st">"Método"</span>),</span>
-<span id="cb10-198"><a href="#cb10-198" aria-hidden="true" tabindex="-1"></a>    <span class="at">Exemplo =</span> <span class="fu">c</span>(<span class="st">"Turno"</span>, <span class="st">"Máquina"</span>, <span class="st">"Operador"</span>, <span class="st">"Matéria-prima"</span>)</span>
-<span id="cb10-199"><a href="#cb10-199" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-190"><a href="#cb10-190" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Por **tempo:** turno, dia da semana, mês;</span>
+<span id="cb10-191"><a href="#cb10-191" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Por **local:** máquina, setor, linha de produção;</span>
+<span id="cb10-192"><a href="#cb10-192" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Por **pessoas:** operador, equipe;</span>
+<span id="cb10-193"><a href="#cb10-193" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Por **método** ou **material**.</span>
+<span id="cb10-194"><a href="#cb10-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-197"><a href="#cb10-197" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-198"><a href="#cb10-198" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-ExamplesStrats</span></span>
+<span id="cb10-199"><a href="#cb10-199" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Exemplos de Tipos de Estratificação."</span></span>
 <span id="cb10-200"><a href="#cb10-200" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-201"><a href="#cb10-201" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
-<span id="cb10-202"><a href="#cb10-202" aria-hidden="true" tabindex="-1"></a>    df,</span>
-<span id="cb10-203"><a href="#cb10-203" aria-hidden="true" tabindex="-1"></a>    <span class="at">escape =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb10-204"><a href="#cb10-204" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span> <span class="st">"c"</span>,</span>
-<span id="cb10-205"><a href="#cb10-205" aria-hidden="true" tabindex="-1"></a>    <span class="at">booktabs =</span> <span class="cn">TRUE</span></span>
-<span id="cb10-206"><a href="#cb10-206" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb10-207"><a href="#cb10-207" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-208"><a href="#cb10-208" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-209"><a href="#cb10-209" aria-hidden="true" tabindex="-1"></a>::::: columns</span>
-<span id="cb10-210"><a href="#cb10-210" aria-hidden="true" tabindex="-1"></a>::: {.column width="50%"}</span>
-<span id="cb10-213"><a href="#cb10-213" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb10-214"><a href="#cb10-214" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-ExampleStrat2Py</span></span>
-<span id="cb10-215"><a href="#cb10-215" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Exemplo 2 de Simulação de Dados Estratificados em Python."</span></span>
-<span id="cb10-216"><a href="#cb10-216" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap-location: bottom</span></span>
-<span id="cb10-217"><a href="#cb10-217" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 6</span></span>
-<span id="cb10-218"><a href="#cb10-218" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 4</span></span>
-<span id="cb10-219"><a href="#cb10-219" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-220"><a href="#cb10-220" aria-hidden="true" tabindex="-1"></a><span class="co"># Exemplo de Estratificação: Defeitos por Turno</span></span>
-<span id="cb10-221"><a href="#cb10-221" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">11111</span>)</span>
-<span id="cb10-222"><a href="#cb10-222" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">150</span></span>
-<span id="cb10-223"><a href="#cb10-223" aria-hidden="true" tabindex="-1"></a>turno <span class="op">=</span> np.random.choice([<span class="st">"Manhã"</span>, <span class="st">"Tarde"</span>, <span class="st">"Noite"</span>], size<span class="op">=</span>n)</span>
-<span id="cb10-224"><a href="#cb10-224" aria-hidden="true" tabindex="-1"></a>defeitos <span class="op">=</span> np.random.binomial(n<span class="op">=</span><span class="dv">10</span>, p<span class="op">=</span><span class="dv">1</span><span class="op">/</span><span class="dv">3</span>, size<span class="op">=</span>n)</span>
-<span id="cb10-225"><a href="#cb10-225" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-226"><a href="#cb10-226" aria-hidden="true" tabindex="-1"></a><span class="co"># Formato Data Frame</span></span>
-<span id="cb10-227"><a href="#cb10-227" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">"Turno"</span>: turno, <span class="st">"Defeitos"</span>: defeitos})</span>
-<span id="cb10-228"><a href="#cb10-228" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-229"><a href="#cb10-229" aria-hidden="true" tabindex="-1"></a><span class="co"># Configurações de Figura</span></span>
-<span id="cb10-230"><a href="#cb10-230" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>), dpi<span class="op">=</span><span class="dv">600</span>)</span>
-<span id="cb10-231"><a href="#cb10-231" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-232"><a href="#cb10-232" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatterplot</span></span>
-<span id="cb10-233"><a href="#cb10-233" aria-hidden="true" tabindex="-1"></a>sns.boxplot(x<span class="op">=</span><span class="st">"Turno"</span>, y<span class="op">=</span><span class="st">"Defeitos"</span>, data<span class="op">=</span>df, hue<span class="op">=</span><span class="st">"Turno"</span>, palette<span class="op">=</span><span class="st">"Set2"</span>, ax<span class="op">=</span>ax)</span>
-<span id="cb10-234"><a href="#cb10-234" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-235"><a href="#cb10-235" aria-hidden="true" tabindex="-1"></a><span class="co"># Configurações de eixos e títulos</span></span>
-<span id="cb10-236"><a href="#cb10-236" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(ax.get_xlabel(), fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb10-237"><a href="#cb10-237" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(ax.get_ylabel(), fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb10-238"><a href="#cb10-238" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-239"><a href="#cb10-239" aria-hidden="true" tabindex="-1"></a><span class="co"># Outras configurações</span></span>
-<span id="cb10-240"><a href="#cb10-240" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">"top"</span>].set_visible(<span class="va">False</span>)</span>
-<span id="cb10-241"><a href="#cb10-241" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">"right"</span>].set_visible(<span class="va">False</span>)</span>
-<span id="cb10-242"><a href="#cb10-242" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-243"><a href="#cb10-243" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibição do gráfico</span></span>
-<span id="cb10-244"><a href="#cb10-244" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb10-245"><a href="#cb10-245" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-246"><a href="#cb10-246" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb10-201"><a href="#cb10-201" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb10-202"><a href="#cb10-202" aria-hidden="true" tabindex="-1"></a>    <span class="at">Tipo =</span> <span class="fu">c</span>(<span class="st">"Tempo"</span>, <span class="st">"Local"</span>, <span class="st">"Pessoa"</span>, <span class="st">"Método"</span>),</span>
+<span id="cb10-203"><a href="#cb10-203" aria-hidden="true" tabindex="-1"></a>    <span class="at">Exemplo =</span> <span class="fu">c</span>(<span class="st">"Turno"</span>, <span class="st">"Máquina"</span>, <span class="st">"Operador"</span>, <span class="st">"Matéria-prima"</span>)</span>
+<span id="cb10-204"><a href="#cb10-204" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-205"><a href="#cb10-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-206"><a href="#cb10-206" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
+<span id="cb10-207"><a href="#cb10-207" aria-hidden="true" tabindex="-1"></a>    df,</span>
+<span id="cb10-208"><a href="#cb10-208" aria-hidden="true" tabindex="-1"></a>    <span class="at">escape =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb10-209"><a href="#cb10-209" aria-hidden="true" tabindex="-1"></a>    <span class="at">align =</span> <span class="st">"c"</span>,</span>
+<span id="cb10-210"><a href="#cb10-210" aria-hidden="true" tabindex="-1"></a>    <span class="at">booktabs =</span> <span class="cn">TRUE</span></span>
+<span id="cb10-211"><a href="#cb10-211" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-212"><a href="#cb10-212" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-213"><a href="#cb10-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-214"><a href="#cb10-214" aria-hidden="true" tabindex="-1"></a>::::: columns</span>
+<span id="cb10-215"><a href="#cb10-215" aria-hidden="true" tabindex="-1"></a>::: {.column width="50%"}</span>
+<span id="cb10-218"><a href="#cb10-218" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb10-219"><a href="#cb10-219" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-ExampleStrat2Py</span></span>
+<span id="cb10-220"><a href="#cb10-220" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Exemplo 2 de Simulação de Dados Estratificados em Python."</span></span>
+<span id="cb10-221"><a href="#cb10-221" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap-location: bottom</span></span>
+<span id="cb10-222"><a href="#cb10-222" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 6</span></span>
+<span id="cb10-223"><a href="#cb10-223" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 4</span></span>
+<span id="cb10-224"><a href="#cb10-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-225"><a href="#cb10-225" aria-hidden="true" tabindex="-1"></a><span class="co"># Exemplo de Estratificação: Defeitos por Turno</span></span>
+<span id="cb10-226"><a href="#cb10-226" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">11111</span>)</span>
+<span id="cb10-227"><a href="#cb10-227" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">150</span></span>
+<span id="cb10-228"><a href="#cb10-228" aria-hidden="true" tabindex="-1"></a>turno <span class="op">=</span> np.random.choice([<span class="st">"Manhã"</span>, <span class="st">"Tarde"</span>, <span class="st">"Noite"</span>], size<span class="op">=</span>n)</span>
+<span id="cb10-229"><a href="#cb10-229" aria-hidden="true" tabindex="-1"></a>defeitos <span class="op">=</span> np.random.binomial(n<span class="op">=</span><span class="dv">10</span>, p<span class="op">=</span><span class="dv">1</span><span class="op">/</span><span class="dv">3</span>, size<span class="op">=</span>n)</span>
+<span id="cb10-230"><a href="#cb10-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-231"><a href="#cb10-231" aria-hidden="true" tabindex="-1"></a><span class="co"># Formato Data Frame</span></span>
+<span id="cb10-232"><a href="#cb10-232" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">"Turno"</span>: turno, <span class="st">"Defeitos"</span>: defeitos})</span>
+<span id="cb10-233"><a href="#cb10-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-234"><a href="#cb10-234" aria-hidden="true" tabindex="-1"></a><span class="co"># Configurações de Figura</span></span>
+<span id="cb10-235"><a href="#cb10-235" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>), dpi<span class="op">=</span><span class="dv">600</span>)</span>
+<span id="cb10-236"><a href="#cb10-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-237"><a href="#cb10-237" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatterplot</span></span>
+<span id="cb10-238"><a href="#cb10-238" aria-hidden="true" tabindex="-1"></a>sns.boxplot(x<span class="op">=</span><span class="st">"Turno"</span>, y<span class="op">=</span><span class="st">"Defeitos"</span>, data<span class="op">=</span>df, hue<span class="op">=</span><span class="st">"Turno"</span>, palette<span class="op">=</span><span class="st">"Set2"</span>, ax<span class="op">=</span>ax)</span>
+<span id="cb10-239"><a href="#cb10-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-240"><a href="#cb10-240" aria-hidden="true" tabindex="-1"></a><span class="co"># Configurações de eixos e títulos</span></span>
+<span id="cb10-241"><a href="#cb10-241" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(ax.get_xlabel(), fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb10-242"><a href="#cb10-242" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(ax.get_ylabel(), fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb10-243"><a href="#cb10-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-244"><a href="#cb10-244" aria-hidden="true" tabindex="-1"></a><span class="co"># Outras configurações</span></span>
+<span id="cb10-245"><a href="#cb10-245" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">"top"</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb10-246"><a href="#cb10-246" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">"right"</span>].set_visible(<span class="va">False</span>)</span>
 <span id="cb10-247"><a href="#cb10-247" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-248"><a href="#cb10-248" aria-hidden="true" tabindex="-1"></a>::: {.column width="50%"}</span>
-<span id="cb10-251"><a href="#cb10-251" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb10-252"><a href="#cb10-252" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-ExampleStrat2R</span></span>
-<span id="cb10-253"><a href="#cb10-253" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Exemplo 2 de Simulação de Dados Estratificados em R."</span></span>
-<span id="cb10-254"><a href="#cb10-254" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap-location: bottom</span></span>
-<span id="cb10-255"><a href="#cb10-255" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 6</span></span>
-<span id="cb10-256"><a href="#cb10-256" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 4</span></span>
-<span id="cb10-257"><a href="#cb10-257" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-258"><a href="#cb10-258" aria-hidden="true" tabindex="-1"></a><span class="co"># Geração de dados</span></span>
-<span id="cb10-259"><a href="#cb10-259" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">11111</span>)</span>
-<span id="cb10-260"><a href="#cb10-260" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">150</span></span>
-<span id="cb10-261"><a href="#cb10-261" aria-hidden="true" tabindex="-1"></a>Turno <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Manhã"</span>, <span class="st">"Tarde"</span>, <span class="st">"Noite"</span>), <span class="at">size =</span> n, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb10-262"><a href="#cb10-262" aria-hidden="true" tabindex="-1"></a>Defeitos <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">prob =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>)</span>
-<span id="cb10-263"><a href="#cb10-263" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-264"><a href="#cb10-264" aria-hidden="true" tabindex="-1"></a><span class="co"># Data frame</span></span>
-<span id="cb10-265"><a href="#cb10-265" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Turno =</span> Turno, <span class="at">Defeitos =</span> Defeitos)</span>
-<span id="cb10-266"><a href="#cb10-266" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-267"><a href="#cb10-267" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico boxplot</span></span>
-<span id="cb10-268"><a href="#cb10-268" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> Turno, <span class="at">y =</span> Defeitos, <span class="at">fill =</span> Turno)) <span class="sc">+</span></span>
-<span id="cb10-269"><a href="#cb10-269" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb10-270"><a href="#cb10-270" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>) <span class="sc">+</span></span>
-<span id="cb10-271"><a href="#cb10-271" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Turno"</span>, <span class="at">y =</span> <span class="st">"Defeitos"</span>) <span class="sc">+</span></span>
-<span id="cb10-272"><a href="#cb10-272" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
-<span id="cb10-273"><a href="#cb10-273" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb10-274"><a href="#cb10-274" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span>,          <span class="co"># Para imitar o `hue="Turno"` do seaborn</span></span>
-<span id="cb10-275"><a href="#cb10-275" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb10-276"><a href="#cb10-276" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"gray90"</span>),</span>
-<span id="cb10-277"><a href="#cb10-277" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"black"</span>),</span>
-<span id="cb10-278"><a href="#cb10-278" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.ticks =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"black"</span>),</span>
-<span id="cb10-279"><a href="#cb10-279" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.border =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb10-280"><a href="#cb10-280" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb10-281"><a href="#cb10-281" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-282"><a href="#cb10-282" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb10-283"><a href="#cb10-283" aria-hidden="true" tabindex="-1"></a>:::::</span>
-<span id="cb10-284"><a href="#cb10-284" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-285"><a href="#cb10-285" aria-hidden="true" tabindex="-1"></a><span class="fu">### Folhas de Verificação</span></span>
-<span id="cb10-286"><a href="#cb10-286" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-287"><a href="#cb10-287" aria-hidden="true" tabindex="-1"></a>São formulários usados para **coletar e organizar dados** de forma sistemática.</span>
-<span id="cb10-288"><a href="#cb10-288" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-289"><a href="#cb10-289" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Facilitam a visualização e interpretação de dados.</span>
-<span id="cb10-290"><a href="#cb10-290" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Podem ser adaptados para diversos propósitos.</span>
+<span id="cb10-248"><a href="#cb10-248" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibição do gráfico</span></span>
+<span id="cb10-249"><a href="#cb10-249" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb10-250"><a href="#cb10-250" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-251"><a href="#cb10-251" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb10-252"><a href="#cb10-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-253"><a href="#cb10-253" aria-hidden="true" tabindex="-1"></a>::: {.column width="50%"}</span>
+<span id="cb10-256"><a href="#cb10-256" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-257"><a href="#cb10-257" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-ExampleStrat2R</span></span>
+<span id="cb10-258"><a href="#cb10-258" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Exemplo 2 de Simulação de Dados Estratificados em R."</span></span>
+<span id="cb10-259"><a href="#cb10-259" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap-location: bottom</span></span>
+<span id="cb10-260"><a href="#cb10-260" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 6</span></span>
+<span id="cb10-261"><a href="#cb10-261" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 4</span></span>
+<span id="cb10-262"><a href="#cb10-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-263"><a href="#cb10-263" aria-hidden="true" tabindex="-1"></a><span class="co"># Geração de dados</span></span>
+<span id="cb10-264"><a href="#cb10-264" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">11111</span>)</span>
+<span id="cb10-265"><a href="#cb10-265" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">150</span></span>
+<span id="cb10-266"><a href="#cb10-266" aria-hidden="true" tabindex="-1"></a>Turno <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Manhã"</span>, <span class="st">"Tarde"</span>, <span class="st">"Noite"</span>), <span class="at">size =</span> n, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb10-267"><a href="#cb10-267" aria-hidden="true" tabindex="-1"></a>Defeitos <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">prob =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>)</span>
+<span id="cb10-268"><a href="#cb10-268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-269"><a href="#cb10-269" aria-hidden="true" tabindex="-1"></a><span class="co"># Data frame</span></span>
+<span id="cb10-270"><a href="#cb10-270" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Turno =</span> Turno, <span class="at">Defeitos =</span> Defeitos)</span>
+<span id="cb10-271"><a href="#cb10-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-272"><a href="#cb10-272" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico boxplot</span></span>
+<span id="cb10-273"><a href="#cb10-273" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> Turno, <span class="at">y =</span> Defeitos, <span class="at">fill =</span> Turno)) <span class="sc">+</span></span>
+<span id="cb10-274"><a href="#cb10-274" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb10-275"><a href="#cb10-275" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>) <span class="sc">+</span></span>
+<span id="cb10-276"><a href="#cb10-276" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Turno"</span>, <span class="at">y =</span> <span class="st">"Defeitos"</span>) <span class="sc">+</span></span>
+<span id="cb10-277"><a href="#cb10-277" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb10-278"><a href="#cb10-278" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb10-279"><a href="#cb10-279" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span>,          <span class="co"># Para imitar o `hue="Turno"` do seaborn</span></span>
+<span id="cb10-280"><a href="#cb10-280" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb10-281"><a href="#cb10-281" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"gray90"</span>),</span>
+<span id="cb10-282"><a href="#cb10-282" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"black"</span>),</span>
+<span id="cb10-283"><a href="#cb10-283" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.ticks =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"black"</span>),</span>
+<span id="cb10-284"><a href="#cb10-284" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.border =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb10-285"><a href="#cb10-285" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-286"><a href="#cb10-286" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-287"><a href="#cb10-287" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb10-288"><a href="#cb10-288" aria-hidden="true" tabindex="-1"></a>:::::</span>
+<span id="cb10-289"><a href="#cb10-289" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-290"><a href="#cb10-290" aria-hidden="true" tabindex="-1"></a><span class="fu">### Folhas de Verificação</span></span>
 <span id="cb10-291"><a href="#cb10-291" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-292"><a href="#cb10-292" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Definição de Folha de Verificação</span></span>
+<span id="cb10-292"><a href="#cb10-292" aria-hidden="true" tabindex="-1"></a>São formulários usados para **coletar e organizar dados** de forma sistemática.</span>
 <span id="cb10-293"><a href="#cb10-293" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-294"><a href="#cb10-294" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; ""*Documento estruturado para registrar dados observacionais em tempo real.*</span></span>
-<span id="cb10-295"><a href="#cb10-295" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-296"><a href="#cb10-296" aria-hidden="true" tabindex="-1"></a>Usada para:</span>
-<span id="cb10-297"><a href="#cb10-297" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-298"><a href="#cb10-298" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Contagem de defeitos</span>
-<span id="cb10-299"><a href="#cb10-299" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Localização de falhas</span>
-<span id="cb10-300"><a href="#cb10-300" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Frequência de ocorrências</span>
-<span id="cb10-301"><a href="#cb10-301" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-302"><a href="#cb10-302" aria-hidden="true" tabindex="-1"></a>🤔 Verificação: Distribuição do Processo de Produção\</span>
-<span id="cb10-303"><a href="#cb10-303" aria-hidden="true" tabindex="-1"></a>🤔 Verificação: Item Defeituoso\</span>
-<span id="cb10-304"><a href="#cb10-304" aria-hidden="true" tabindex="-1"></a>🤔 Verificação: Localização de Defeitos\</span>
-<span id="cb10-305"><a href="#cb10-305" aria-hidden="true" tabindex="-1"></a>🤔 Verificação: Causas de um defeito ou falha\</span>
-<span id="cb10-306"><a href="#cb10-306" aria-hidden="true" tabindex="-1"></a>🤔 Verificação: Satisfação do Cliente (ex.: questionários de satisfação)</span>
-<span id="cb10-307"><a href="#cb10-307" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-308"><a href="#cb10-308" aria-hidden="true" tabindex="-1"></a><span class="al">![**Exemplo de folha de verificação de defeitos na lataria de um carro.**](images/FOLHA_VERIF.png)</span>{fig-align="center"}</span>
-<span id="cb10-309"><a href="#cb10-309" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-310"><a href="#cb10-310" aria-hidden="true" tabindex="-1"></a>::::: columns</span>
-<span id="cb10-311"><a href="#cb10-311" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-312"><a href="#cb10-312" aria-hidden="true" tabindex="-1"></a>::: {.column width="50%"}</span>
-<span id="cb10-315"><a href="#cb10-315" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb10-316"><a href="#cb10-316" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-ExampleVerifPy</span></span>
-<span id="cb10-317"><a href="#cb10-317" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Exemplo Gráfico da Folha de Verificação em Python."</span></span>
-<span id="cb10-318"><a href="#cb10-318" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap-location: bottom</span></span>
-<span id="cb10-319"><a href="#cb10-319" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 6</span></span>
-<span id="cb10-320"><a href="#cb10-320" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 4</span></span>
-<span id="cb10-321"><a href="#cb10-321" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-322"><a href="#cb10-322" aria-hidden="true" tabindex="-1"></a><span class="co"># Dados da Folha de Verificação</span></span>
-<span id="cb10-323"><a href="#cb10-323" aria-hidden="true" tabindex="-1"></a>defect_types <span class="op">=</span> [<span class="st">"Amassado"</span>, <span class="st">"Arranhão"</span>, <span class="st">"Bolha"</span>, <span class="st">"Mancha"</span>]</span>
-<span id="cb10-324"><a href="#cb10-324" aria-hidden="true" tabindex="-1"></a>defect_counts <span class="op">=</span> [<span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">6</span>, <span class="dv">9</span>]</span>
-<span id="cb10-325"><a href="#cb10-325" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-326"><a href="#cb10-326" aria-hidden="true" tabindex="-1"></a><span class="co"># Configurações de Figura</span></span>
-<span id="cb10-327"><a href="#cb10-327" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>), dpi<span class="op">=</span><span class="dv">600</span>)</span>
-<span id="cb10-328"><a href="#cb10-328" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-329"><a href="#cb10-329" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de Barras</span></span>
-<span id="cb10-330"><a href="#cb10-330" aria-hidden="true" tabindex="-1"></a>sns.barplot(x<span class="op">=</span>defect_types, y<span class="op">=</span>defect_counts, ax<span class="op">=</span>ax)</span>
-<span id="cb10-331"><a href="#cb10-331" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-332"><a href="#cb10-332" aria-hidden="true" tabindex="-1"></a><span class="co"># Configurações de eixos e títulos</span></span>
-<span id="cb10-333"><a href="#cb10-333" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Defeito"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb10-334"><a href="#cb10-334" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Quantidade"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb10-335"><a href="#cb10-335" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-336"><a href="#cb10-336" aria-hidden="true" tabindex="-1"></a><span class="co"># Outras configurações</span></span>
-<span id="cb10-337"><a href="#cb10-337" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">"top"</span>].set_visible(<span class="va">False</span>)</span>
-<span id="cb10-338"><a href="#cb10-338" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">"right"</span>].set_visible(<span class="va">False</span>)</span>
-<span id="cb10-339"><a href="#cb10-339" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-340"><a href="#cb10-340" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibição do gráfico</span></span>
-<span id="cb10-341"><a href="#cb10-341" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb10-342"><a href="#cb10-342" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-343"><a href="#cb10-343" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-344"><a href="#cb10-344" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb10-345"><a href="#cb10-345" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-346"><a href="#cb10-346" aria-hidden="true" tabindex="-1"></a>::: {.column width="50%"}</span>
-<span id="cb10-347"><a href="#cb10-347" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-350"><a href="#cb10-350" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb10-351"><a href="#cb10-351" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-ExampleVerifR</span></span>
-<span id="cb10-352"><a href="#cb10-352" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Exemplo Gráfico da Folha de Verificação em R."</span></span>
-<span id="cb10-353"><a href="#cb10-353" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap-location: bottom</span></span>
-<span id="cb10-354"><a href="#cb10-354" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 6</span></span>
-<span id="cb10-355"><a href="#cb10-355" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 4</span></span>
-<span id="cb10-356"><a href="#cb10-356" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-357"><a href="#cb10-357" aria-hidden="true" tabindex="-1"></a><span class="co"># Dados da Folha de Verificação</span></span>
-<span id="cb10-358"><a href="#cb10-358" aria-hidden="true" tabindex="-1"></a>tipos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Amassado"</span>, <span class="st">"Arranhão"</span>, <span class="st">"Bolha"</span>, <span class="st">"Mancha"</span>)</span>
-<span id="cb10-359"><a href="#cb10-359" aria-hidden="true" tabindex="-1"></a>quantidades <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">6</span>, <span class="dv">9</span>)</span>
-<span id="cb10-360"><a href="#cb10-360" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-361"><a href="#cb10-361" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de Barras</span></span>
-<span id="cb10-362"><a href="#cb10-362" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="at">x =</span> tipos, <span class="at">y =</span> quantidades)) <span class="sc">+</span></span>
-<span id="cb10-363"><a href="#cb10-363" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
-<span id="cb10-364"><a href="#cb10-364" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Defeito"</span>, <span class="at">y =</span> <span class="st">"Quantidade"</span>) <span class="sc">+</span></span>
-<span id="cb10-365"><a href="#cb10-365" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span>
-<span id="cb10-366"><a href="#cb10-366" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-367"><a href="#cb10-367" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-368"><a href="#cb10-368" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb10-369"><a href="#cb10-369" aria-hidden="true" tabindex="-1"></a>:::::</span>
-<span id="cb10-370"><a href="#cb10-370" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-371"><a href="#cb10-371" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Conclusão sobre Folhas de Verificação</span></span>
+<span id="cb10-294"><a href="#cb10-294" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Facilitam a visualização e interpretação de dados.</span>
+<span id="cb10-295"><a href="#cb10-295" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Podem ser adaptados para diversos propósitos.</span>
+<span id="cb10-296"><a href="#cb10-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-297"><a href="#cb10-297" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Definição de Folha de Verificação</span></span>
+<span id="cb10-298"><a href="#cb10-298" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-299"><a href="#cb10-299" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; ""*Documento estruturado para registrar dados observacionais em tempo real.*</span></span>
+<span id="cb10-300"><a href="#cb10-300" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-301"><a href="#cb10-301" aria-hidden="true" tabindex="-1"></a>Usada para:</span>
+<span id="cb10-302"><a href="#cb10-302" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-303"><a href="#cb10-303" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Contagem de defeitos</span>
+<span id="cb10-304"><a href="#cb10-304" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Localização de falhas</span>
+<span id="cb10-305"><a href="#cb10-305" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Frequência de ocorrências</span>
+<span id="cb10-306"><a href="#cb10-306" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-307"><a href="#cb10-307" aria-hidden="true" tabindex="-1"></a>🤔 Verificação: Distribuição do Processo de Produção\</span>
+<span id="cb10-308"><a href="#cb10-308" aria-hidden="true" tabindex="-1"></a>🤔 Verificação: Item Defeituoso\</span>
+<span id="cb10-309"><a href="#cb10-309" aria-hidden="true" tabindex="-1"></a>🤔 Verificação: Localização de Defeitos\</span>
+<span id="cb10-310"><a href="#cb10-310" aria-hidden="true" tabindex="-1"></a>🤔 Verificação: Causas de um defeito ou falha\</span>
+<span id="cb10-311"><a href="#cb10-311" aria-hidden="true" tabindex="-1"></a>🤔 Verificação: Satisfação do Cliente (ex.: questionários de satisfação)</span>
+<span id="cb10-312"><a href="#cb10-312" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-313"><a href="#cb10-313" aria-hidden="true" tabindex="-1"></a><span class="al">![**Exemplo de folha de verificação de defeitos na lataria de um carro.**](images/FOLHA_VERIF.png)</span>{fig-align="center"}</span>
+<span id="cb10-314"><a href="#cb10-314" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-315"><a href="#cb10-315" aria-hidden="true" tabindex="-1"></a>::::: columns</span>
+<span id="cb10-316"><a href="#cb10-316" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-317"><a href="#cb10-317" aria-hidden="true" tabindex="-1"></a>::: {.column width="50%"}</span>
+<span id="cb10-320"><a href="#cb10-320" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb10-321"><a href="#cb10-321" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-ExampleVerifPy</span></span>
+<span id="cb10-322"><a href="#cb10-322" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Exemplo Gráfico da Folha de Verificação em Python."</span></span>
+<span id="cb10-323"><a href="#cb10-323" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap-location: bottom</span></span>
+<span id="cb10-324"><a href="#cb10-324" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 6</span></span>
+<span id="cb10-325"><a href="#cb10-325" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 4</span></span>
+<span id="cb10-326"><a href="#cb10-326" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-327"><a href="#cb10-327" aria-hidden="true" tabindex="-1"></a><span class="co"># Dados da Folha de Verificação</span></span>
+<span id="cb10-328"><a href="#cb10-328" aria-hidden="true" tabindex="-1"></a>defect_types <span class="op">=</span> [<span class="st">"Amassado"</span>, <span class="st">"Arranhão"</span>, <span class="st">"Bolha"</span>, <span class="st">"Mancha"</span>]</span>
+<span id="cb10-329"><a href="#cb10-329" aria-hidden="true" tabindex="-1"></a>defect_counts <span class="op">=</span> [<span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">6</span>, <span class="dv">9</span>]</span>
+<span id="cb10-330"><a href="#cb10-330" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-331"><a href="#cb10-331" aria-hidden="true" tabindex="-1"></a><span class="co"># Configurações de Figura</span></span>
+<span id="cb10-332"><a href="#cb10-332" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>), dpi<span class="op">=</span><span class="dv">600</span>)</span>
+<span id="cb10-333"><a href="#cb10-333" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-334"><a href="#cb10-334" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de Barras</span></span>
+<span id="cb10-335"><a href="#cb10-335" aria-hidden="true" tabindex="-1"></a>sns.barplot(x<span class="op">=</span>defect_types, y<span class="op">=</span>defect_counts, ax<span class="op">=</span>ax)</span>
+<span id="cb10-336"><a href="#cb10-336" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-337"><a href="#cb10-337" aria-hidden="true" tabindex="-1"></a><span class="co"># Configurações de eixos e títulos</span></span>
+<span id="cb10-338"><a href="#cb10-338" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Defeito"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb10-339"><a href="#cb10-339" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Quantidade"</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb10-340"><a href="#cb10-340" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-341"><a href="#cb10-341" aria-hidden="true" tabindex="-1"></a><span class="co"># Outras configurações</span></span>
+<span id="cb10-342"><a href="#cb10-342" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">"top"</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb10-343"><a href="#cb10-343" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">"right"</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb10-344"><a href="#cb10-344" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-345"><a href="#cb10-345" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibição do gráfico</span></span>
+<span id="cb10-346"><a href="#cb10-346" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb10-347"><a href="#cb10-347" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-348"><a href="#cb10-348" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-349"><a href="#cb10-349" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb10-350"><a href="#cb10-350" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-351"><a href="#cb10-351" aria-hidden="true" tabindex="-1"></a>::: {.column width="50%"}</span>
+<span id="cb10-352"><a href="#cb10-352" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-355"><a href="#cb10-355" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-356"><a href="#cb10-356" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-ExampleVerifR</span></span>
+<span id="cb10-357"><a href="#cb10-357" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Exemplo Gráfico da Folha de Verificação em R."</span></span>
+<span id="cb10-358"><a href="#cb10-358" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap-location: bottom</span></span>
+<span id="cb10-359"><a href="#cb10-359" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 6</span></span>
+<span id="cb10-360"><a href="#cb10-360" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 4</span></span>
+<span id="cb10-361"><a href="#cb10-361" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-362"><a href="#cb10-362" aria-hidden="true" tabindex="-1"></a><span class="co"># Dados da Folha de Verificação</span></span>
+<span id="cb10-363"><a href="#cb10-363" aria-hidden="true" tabindex="-1"></a>tipos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Amassado"</span>, <span class="st">"Arranhão"</span>, <span class="st">"Bolha"</span>, <span class="st">"Mancha"</span>)</span>
+<span id="cb10-364"><a href="#cb10-364" aria-hidden="true" tabindex="-1"></a>quantidades <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">6</span>, <span class="dv">9</span>)</span>
+<span id="cb10-365"><a href="#cb10-365" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-366"><a href="#cb10-366" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de Barras</span></span>
+<span id="cb10-367"><a href="#cb10-367" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="cn">NULL</span>, <span class="fu">aes</span>(<span class="at">x =</span> tipos, <span class="at">y =</span> quantidades)) <span class="sc">+</span></span>
+<span id="cb10-368"><a href="#cb10-368" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb10-369"><a href="#cb10-369" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Defeito"</span>, <span class="at">y =</span> <span class="st">"Quantidade"</span>) <span class="sc">+</span></span>
+<span id="cb10-370"><a href="#cb10-370" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span>
+<span id="cb10-371"><a href="#cb10-371" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb10-372"><a href="#cb10-372" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-373"><a href="#cb10-373" aria-hidden="true" tabindex="-1"></a>✅ Facilitam a **padronização da coleta de dados** \</span>
-<span id="cb10-374"><a href="#cb10-374" aria-hidden="true" tabindex="-1"></a>✅ Auxiliam na **identificação de padrões** \</span>
-<span id="cb10-375"><a href="#cb10-375" aria-hidden="true" tabindex="-1"></a>✅ São a **base para análises gráficas e estatísticas posteriores** </span>
-<span id="cb10-376"><a href="#cb10-376" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-377"><a href="#cb10-377" aria-hidden="true" tabindex="-1"></a><span class="fu">### Diagrama de Ishikawa</span></span>
-<span id="cb10-378"><a href="#cb10-378" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-379"><a href="#cb10-379" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Também conhecido como diagrama de causa e efeito ou espinha de peixe.</span></span>
-<span id="cb10-380"><a href="#cb10-380" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-381"><a href="#cb10-381" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Ferramenta para análise de problemas.</span>
-<span id="cb10-382"><a href="#cb10-382" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Organiza causas potenciais de um efeito específico.</span>
+<span id="cb10-373"><a href="#cb10-373" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb10-374"><a href="#cb10-374" aria-hidden="true" tabindex="-1"></a>:::::</span>
+<span id="cb10-375"><a href="#cb10-375" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-376"><a href="#cb10-376" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Conclusão sobre Folhas de Verificação</span></span>
+<span id="cb10-377"><a href="#cb10-377" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-378"><a href="#cb10-378" aria-hidden="true" tabindex="-1"></a>✅ Facilitam a **padronização da coleta de dados** \</span>
+<span id="cb10-379"><a href="#cb10-379" aria-hidden="true" tabindex="-1"></a>✅ Auxiliam na **identificação de padrões** \</span>
+<span id="cb10-380"><a href="#cb10-380" aria-hidden="true" tabindex="-1"></a>✅ São a **base para análises gráficas e estatísticas posteriores** </span>
+<span id="cb10-381"><a href="#cb10-381" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-382"><a href="#cb10-382" aria-hidden="true" tabindex="-1"></a><span class="fu">### Diagrama de Ishikawa</span></span>
 <span id="cb10-383"><a href="#cb10-383" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-384"><a href="#cb10-384" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Como construir um Diagrama de Ishikawa</span></span>
+<span id="cb10-384"><a href="#cb10-384" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Também conhecido como diagrama de causa e efeito ou espinha de peixe.</span></span>
 <span id="cb10-385"><a href="#cb10-385" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-386"><a href="#cb10-386" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Defina claramente o problema (efeito).</span>
-<span id="cb10-387"><a href="#cb10-387" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Trace uma linha horizontal com o problema no final (efeito).</span>
-<span id="cb10-388"><a href="#cb10-388" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Adicione as categorias principais de causa (método, máquina, mão de obra, material, meio ambiente, medição, etc.)</span>
-<span id="cb10-389"><a href="#cb10-389" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Liste causas específicas em cada categoria.</span>
+<span id="cb10-386"><a href="#cb10-386" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Ferramenta para análise de problemas.</span>
+<span id="cb10-387"><a href="#cb10-387" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Organiza causas potenciais de um efeito específico.</span>
+<span id="cb10-388"><a href="#cb10-388" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-389"><a href="#cb10-389" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Como construir um Diagrama de Ishikawa</span></span>
 <span id="cb10-390"><a href="#cb10-390" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-391"><a href="#cb10-391" aria-hidden="true" tabindex="-1"></a><span class="al">![**Exemplo de diagrama de causa e efeito (Ishikawa).**](images/DIAGRAM_ISHIKAWA.png)</span>{fig-align="center"}</span>
-<span id="cb10-392"><a href="#cb10-392" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-393"><a href="#cb10-393" aria-hidden="true" tabindex="-1"></a>:::: progress</span>
-<span id="cb10-394"><a href="#cb10-394" aria-hidden="true" tabindex="-1"></a>:::: {.progress-bar style="width: 100%;"}</span>
-<span id="cb10-395"><a href="#cb10-395" aria-hidden="true" tabindex="-1"></a>::::</span>
-<span id="cb10-396"><a href="#cb10-396" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb10-391"><a href="#cb10-391" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Defina claramente o problema (efeito).</span>
+<span id="cb10-392"><a href="#cb10-392" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Trace uma linha horizontal com o problema no final (efeito).</span>
+<span id="cb10-393"><a href="#cb10-393" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Adicione as categorias principais de causa (método, máquina, mão de obra, material, meio ambiente, medição, etc.)</span>
+<span id="cb10-394"><a href="#cb10-394" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Liste causas específicas em cada categoria.</span>
+<span id="cb10-395"><a href="#cb10-395" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-396"><a href="#cb10-396" aria-hidden="true" tabindex="-1"></a><span class="al">![**Exemplo de diagrama de causa e efeito (Ishikawa).**](images/DIAGRAM_ISHIKAWA.png)</span>{fig-align="center"}</span>
+<span id="cb10-397"><a href="#cb10-397" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-398"><a href="#cb10-398" aria-hidden="true" tabindex="-1"></a>:::: progress</span>
+<span id="cb10-399"><a href="#cb10-399" aria-hidden="true" tabindex="-1"></a>:::: {.progress-bar style="width: 100%;"}</span>
+<span id="cb10-400"><a href="#cb10-400" aria-hidden="true" tabindex="-1"></a>::::</span>
+<span id="cb10-401"><a href="#cb10-401" aria-hidden="true" tabindex="-1"></a>::::</span>
 </code><button title="Copiar para a área de transferência" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

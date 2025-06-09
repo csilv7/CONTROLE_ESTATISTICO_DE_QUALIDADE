@@ -13,6 +13,11 @@
 
 Material de apoio para a disciplina de **Controle Estatístico de Qualidade** da *Falculdade de Estatística* (FAEST) da *Universidade Federal do Pará* (UFPA).
 
+Para esta etapa inicial foram usadas as referências:
+
+* @montgomery2013controle
+* @mermaidjs
+
 ```{r}
 #| warning: false
 #| message: false

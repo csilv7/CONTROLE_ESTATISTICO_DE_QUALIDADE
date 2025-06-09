@@ -1,0 +1,182 @@
+```{=html}
+<style>
+  body{text-align: justify}
+</style>
+```
+
+:::: progress
+:::: {.progress-bar style="width: 100%;"}
+::::
+::::
+
+# Gráficos de Controle
+
+```{r}
+#| warning: false
+#| message: false
+#| label: Configuration R
+
+library(ggplot2)
+library(gridExtra)
+library(dplyr)
+
+library(reticulate)
+use_python("C:/Users/user/anaconda3/python.exe", required = TRUE)
+```
+
+```{python}
+#| label: Configuration Python
+
+# Tratamentos de Dados
+import numpy as np
+import pandas as pd
+
+# Funções Estatísticas
+from scipy import stats
+
+# Visualizações Gráficas
+import matplotlib.pyplot as plt
+import seaborn as sns
+```
+
+## Visão Geral da Inferência Estatística
+
+A **inferência estatística** permite tirar conclusões sobre um processo a partir de uma **amostra**.
+
+* Estimamos parâmetros populacionais (como média e variância).
+* Avaliamos a **variabilidade natural** dos dados.
+* Essencial para construir **gráficos de controle** com base em dados amostrais.
+
+### Duas abordagens principais
+
+* **Estimação:** Processo de aplicação do *estimador* (fórmula) para se obter *estimativas*.
+    * **Pontual:** Cálculo de valores pontuais para parâmetros do processo.
+    * **Intervalar:** Cálculo de intervalos de confiança para parâmetros do processo.
+
+* **Teste de Hipóteses:** Decisões sobre mudanças no processo com base em evidência estatística.
+
+### Propriedades dos Estimadores
+
+Um estimador é uma função da amostra usada para estimar um parâmetro.
+
+**Boas propriedades desejáveis:**
+
+1. *Não-viesado:* Valor esperado (médio) do estimador é  converge (igual) ao parâmetro verdadeiro, isto é, $$E [\hat{\theta}] = \theta.$$
+
+2. *Consistência:* A medida que $n$ (tamanho amostral) tende ao infinito, o estimador converge, em probabilidade, ao verdadeiro valor do parâmetro. Isto é, seja $X_{1}, X_{2}, \ldots, X_{n}$ uma amostra aleatória de uma variável aleatória $X$ com média $\theta$ e variância $\sigma^{2}$.
+
+> Um estimador para $\theta$, é dito consistente se: $$\lim_{n \to \infty} P(|\hat{\theta} - \theta| > \epsilon) = 0, \forall \epsilon > 0.$$
+
+Em geral, a desigualdade de Chebyshev pode ser usada para verificar essa propriedade:
+$$P(|\hat{\theta} - \theta| > \epsilon) \leq \dfrac{\sigma^{2}}{n \epsilon^{2}}.$$
+
+Portanto, à medida que $n$ cresce, a probabilidade de o estimador estar distante do verdadeiro parâmetro $\theta$ tende a zero, garantindo sua consistência.
+
+3. *Eficiência:* Possui a menor variância possível entre os estimadores não-viesados. Isto é, seja $X_{1}, X_{2}, \ldots, X_{n}$ uma amostra aleatória de uma variável $X$ com parâmetro $\theta$
+
+> Um estimador $\hat{\theta}$ é eficiente se sua variância atinge o limite inferior dado por: $$Var[\hat{\theta}] \geq \dfrac{1}{I(\theta)},$$
+
+\noindent em que $I(\theta)$ é a ***Informação de Fisher*** expressa por: $$I(\theta) = - E \left[ \dfrac{\partial^{2} L (\theta)}{\partial \theta^{2}} \right].$$
+
+## Estimações do Processo
+
+### Estimando a Dispersão do Processo
+
+A dispersão do processo pode ser estimada usando:
+
+* Desvio padrão amostral ($S$);
+* Amplitude Total ($AT$);
+* Desvio médio absoluto.
+
+### Estimando o Nível do Processo
+
+O nível do processo geralmente se refere à média do processo.
+
+* É representado por $\mu$, a média verdadeira da variável de interesse;
+* É estimada fazendo uso da distribuição amostral de $\bar{X}$, isto é, $\bar{X} \sim \text{Normal}(\mu, \sigma^{2}/n)$.
+
+## Resumo Geral
+
+* A inferência estatística fornece as ferramentas para definir limites e linhas centrais ✅;
+* A precisão da estimativa depende do tamanho e representatividade da amostra ✅;
+* Com base nestes conceitos, constrói-se gráficos de controle como $\bar{X}, AT, S$. entre outros ✅.
+
+## Visão Geral de Gráficos de Controle
+
+Os gráficos de controle são ferramentas gráficas usadas para monitorar processos ao longo do tempo.
+
+* Detectam **variações comuns** (naturais) e **variações especiais** (anomalias).
+* Ajudam na **manutenção da qualidade** e na **tomada de decisões**.
+
+### Princípios dos Gráficos de Controle
+
+* Baseiam-se em **amostras coletadas periodicamente**;
+* Mostram uma **linha central** ($LC$) representando o comportamento esperado do processo;
+* Possuem **limites de controle** ($LIC$ e $LSC$) que indicam variações aceitáveis;
+* Proposto ppr @shewhart1926quality;
+* Controlar a variabilidade dos processos.
+
+> **Proposta geral:** $$\begin{cases} LIC & = \mu_{w} - 3 \times \sigma_{w} \\ LC & = \mu_{w} \\ LSC & = \mu_{w} + 3 \times \sigma_{w} \end{cases}$$
+
+Temos que: $$P (LIC \leq X \leq \mu_{w}) = \alpha / 2$$ e $$P (\mu_{w} \leq X \leq LSC) = \alpha / 2.$$
+
+Se $X_{i} \sim \text{Normal}(\mu, \sigma^{2})$, então $$P \left( \dfrac{\mu_{w} - 3 \sigma}{\sqrt{n}} \leq \bar{X}_{i} \leq \dfrac{\mu_{w} + 3 \sigma}{\sqrt{n}} \right) = 0,9973$$ que é equivalente a $$P \left(-3 \leq \dfrac{\sqrt{n} (\bar{X}_{i} - \mu)}{\sigma}  \leq 3 \right) = 0,9973$$.
+
+### Gráficos de controle para variáveis
+
+#### Gráficos com valores padrão
+
+* **Variância Conhecida:** Quando se tem conhecimento da variância populacional, usa-se as expressões abaixo: $$\begin{cases} LIC &= \mu - 3 \dfrac{\sigma}{\sqrt{n}}; \\ LC &= \mu; \\ LSC &= \mu + 3 \dfrac{\sigma}{\sqrt{n}}. \end{cases}$$ Ou, de forma sintetizada: $$\begin{cases} LIC & = \mu - A \sigma; \\ LC & = \mu; \\ LSC & = \mu + A \sigma. \end{cases}$$ Sendo $A = \frac{3}{\sqrt{n}}$
+
+#### Gráficos com valores tabelados
+
+* **Principais gráficos:**
+
+    * $\bar{X}$ e $AT$ ;
+    * $\bar{X}$ e $S$ ;
+    * $S^{2}$
+    * Medições individuais ($n=1$)
+
+![**Tabela com fatores para contrução dos gráficos de controle para variáveis.**](images/FATORES_CONTROL_CHARTS.png){fig-align="center"}
+
+> **Nota:** Iremos utilizar $n$ como o números de características mensuradas (colunas) no processo.
+
+##### Gráfico de Controle: $\bar{X}$ e $AT$
+
+* **Quando utilizar:**
+
+    * Controle da Média e Amplitude;
+    * Indicados para subgrupos pequenos ($n \leq 10$)
+
+* **Expressões para:**
+
+    * **Controle de $\bar{X}$:** $LC_{\bar{X}} = \dfrac{1}{n} \sum_{i = 1}^{n} \bar{X}_{i}$, $LIC = LC_{\bar{X}} - A_{2} \bar{AT}$ e $LSC = LC_{\bar{X}} + A_{2} \bar{AT}$;
+    * **Controle de $AT$:** $LC_{AT} = \bar{AT} = \dfrac{1}{n} \sum_{i = 1}^{n} AT_{i}$, $LIC = D_{3} \bar{AT}$ e $LSC = D_{4} \bar{AT}$;
+
+##### Gráfico de Controle: $\bar{X}$ e $S$
+
+* **Quando utilizar:**
+
+    * Usa Desvio Padrão ao invés da Amplitude;
+    * Preferido para amostras maiores ($n > 10$).
+
+* **Expressões para:**
+
+    * **Controle de $\bar{X}$:** $LC_{\bar{X}} = \dfrac{1}{n} \sum_{i = 1}^{n} \bar{X}_{i}$, $LIC = LC_{\bar{X}} - A_{3} \bar{S}$ e $LSC = LC_{\bar{X}} + A_{3} \bar{S}$;
+    * **Controle de $S$:** $LC_{S} = \bar{S} = \dfrac{1}{n} \sum_{i = 1}^{n} S_{i}$, $LIC = B_{3} \bar{AT}$ e $LSC = B_{4} \bar{S}$;
+
+##### Gráfico de Controle: $S^{2}$
+
+* Menos comum;
+* Baseado na distribuição Qui-Quadrado ($\chi^{2}$).
+
+* **Expressões:**
+
+    * **Controle de $S^{2}$:** $LC_{S^{2}} = \bar{S^{2}} = \dfrac{1}{n} \sum_{i = 1}^{n} S^{2}_{i}$, $LIC = \dfrac{(n - 1) \bar{S^{2}}}{\chi^{2}_{\alpha/2; n - 1}}$ e $LSC = \dfrac{(n - 1) \bar{S^{2}}}{\chi^{2}_{1 - \alpha/2; n - 1}}$;
+
+* Útil quando se deseja monitorar diretamente a variância do processo.
+
+:::: progress
+:::: {.progress-bar style="width: 100%;"}
+::::
+::::

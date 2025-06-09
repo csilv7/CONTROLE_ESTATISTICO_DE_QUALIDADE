@@ -29,6 +29,7 @@ book:
   chapters:
     - index.qmd
     - UsualPlots.qmd
+    - ControlChart.qmd
     - Exercises.qmd
     - references.qmd
 
