@@ -1,10 +1,34 @@
-# Prefácio {.unnumbered}
+```{=html}
+<style>
+  body{text-align: justify}
+</style>
+```
 
-Arquivo que irá servir para armazenar os conteúdos vistos na *Disciplina* da **Falculdade de Estatística** da Universidade Federal do Pará.
+:::: progress
+:::: {.progress-bar style="width: 100%;"}
+::::
+::::
 
 # Introdução
 
-```{python, echo=false}
+Material de apoio para a disciplina de **Controle Estatístico de Qualidade** da *Falculdade de Estatística* (FAEST) da *Universidade Federal do Pará* (UFPA).
+
+```{r}
+#| warning: false
+#| message: false
+#| label: Configuration R
+
+# Pacotes necessários
+library(ggplot2)
+library(dplyr)
+
+library(reticulate)
+use_python("C:/Users/user/anaconda3/python.exe", required = TRUE)
+```
+
+```{python}
+#| label: Configuration Python
+
 # Tratamentos de Dados
 import numpy as np
 import pandas as pd
@@ -21,22 +45,30 @@ import seaborn as sns
 
 As sete ferramentas da qualidae são técnicas estatísticas simples para resolver problemas na indústria.✅
 
-- Estratificação
-- Folhas de Verificação
-- Diagrama de Ishikawa
-- Histograma
-- Diagrama de Pareto
-- Gráfico de Dispersão
-- Gráfico de Controle
+-   Estratificação
+-   Folhas de Verificação
+-   Diagrama de Ishikawa
+-   Histograma
+-   Diagrama de Pareto
+-   Gráfico de Dispersão
+-   Gráfico de Controle
 
 ### Estratificação
 
 É uma técnica usada para **separar dados em grupos significativos** para facilitar a análise.
 
-- Permite observar padrões escondidos em dados mistos.
-- Ajuda identificar **fontes de variação**.
+-   Permite observar padrões escondidos em dados mistos.
+-   Ajuda identificar **fontes de variação**.
 
-```{python, echo=false}
+::::: columns
+::: {.column width="50%"}
+```{python}
+#| label: fig-ExampleStratPy
+#| fig-cap: "Exemplo de Simulação de Dados Estratificados em Python."
+#| fig-cap-location: bottom
+#| fig-width: 6
+#| fig-height: 4
+
 # Geração de Dados: Exemplo de Dados Estratificados
 np.random.seed(11111)
 group1_size = 30
@@ -77,26 +109,270 @@ ax.spines["right"].set_visible(False)
 # Exibição do gráfico
 plt.show()
 ```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: fig-ExampleStratR
+#| fig-cap: "Exemplo de Simulação de Dados Estratificados em R."
+#| fig-cap-location: bottom
+#| fig-width: 6
+#| fig-height: 4
+
+# Definir semente
+set.seed(11111)
+
+# Grupo A
+group1_size <- 30
+group1_x <- rnorm(group1_size, mean = 10, sd = 2.5)
+group1_y <- rnorm(group1_size, mean = 20, sd = 3.5)
+
+# Grupo B
+group2_size <- 40
+group2_x <- rnorm(group2_size, mean = 20, sd = 3.5)
+group2_y <- rnorm(group2_size, mean = 30, sd = 4.5)
+
+# Grupo C
+group3_size <- 30
+group3_x <- rnorm(group3_size, mean = 30, sd = 4.5)
+group3_y <- rnorm(group3_size, mean = 15, sd = 2.5)
+
+# DataFrame unificado
+df <- data.frame(
+  x = c(group1_x, group2_x, group3_x),
+  y = c(group1_y, group2_y, group3_y),
+  Grupo = factor(c(
+    rep("Grupo A", group1_size),
+    rep("Grupo B", group2_size),
+    rep("Grupo C", group3_size)
+  ))
+)
+
+# Gráfico com ggplot2
+ggplot(df, aes(x = x, y = y, color = Grupo)) +
+  geom_point(size = 3) +
+  scale_color_viridis_d() +
+  labs(x = "X", y = "y", color = "Grupo") +
+  theme_minimal(base_size = 12) +
+  theme(
+    legend.position = "top",
+    panel.grid.minor = element_blank(),
+    panel.grid.major = element_line(color = "gray90"),
+    axis.line = element_line(color = "black"),
+    axis.ticks = element_line(color = "black"),
+    panel.border = element_blank()
+  )
+```
+:::
+:::::
 
 #### Definição de Estratificação
 
 > "*Processo de **dividir dados em subgrupos (estratos)** com base em características relevantes como turno, máquina, operador, etc.*"
 
-- **Exemplo:** Existe diferênça de desempenho entre os turnos?
+-   **Exemplo:** Existe diferênça de desempenho entre os turnos?
 
 #### Tipos de Estratificação
 
-- Por **tempo:** turno, dia da semana, mês;
-- Por **local:** máquina, setor, linha de produção;
-- Por **pessoas:** operador, equipe;
-- Por **método** ou **material**.
+-   Por **tempo:** turno, dia da semana, mês;
+-   Por **local:** máquina, setor, linha de produção;
+-   Por **pessoas:** operador, equipe;
+-   Por **método** ou **material**.
 
+```{r}
+#| label: tbl-ExamplesStrats
+#| tbl-cap: "Exemplos de Tipos de Estratificação."
 
-Exemplos de Tipos de Estratificação
+df <- data.frame(
+    Tipo = c("Tempo", "Local", "Pessoa", "Método"),
+    Exemplo = c("Turno", "Máquina", "Operador", "Matéria-prima")
+)
 
-| **Tipo** | **Exemplo**   |
-| -------- | -----------   |
-| Tempo    | Turno         |
-| Local    | Máquina       |
-| Pessoa   | Operador      |
-| Método   | Matéria-prima |
+knitr::kable(
+    df,
+    escape = FALSE,
+    align = "c",
+    booktabs = TRUE
+)
+```
+
+::::: columns
+::: {.column width="50%"}
+```{python}
+#| label: fig-ExampleStrat2Py
+#| fig-cap: "Exemplo 2 de Simulação de Dados Estratificados em Python."
+#| fig-cap-location: bottom
+#| fig-width: 6
+#| fig-height: 4
+
+# Exemplo de Estratificação: Defeitos por Turno
+np.random.seed(11111)
+n = 150
+turno = np.random.choice(["Manhã", "Tarde", "Noite"], size=n)
+defeitos = np.random.binomial(n=10, p=1/3, size=n)
+
+# Formato Data Frame
+df = pd.DataFrame({"Turno": turno, "Defeitos": defeitos})
+
+# Configurações de Figura
+fig, ax = plt.subplots(figsize=(6, 4), dpi=600)
+
+# Scatterplot
+sns.boxplot(x="Turno", y="Defeitos", data=df, hue="Turno", palette="Set2", ax=ax)
+
+# Configurações de eixos e títulos
+ax.set_xlabel(ax.get_xlabel(), fontsize=12)
+ax.set_ylabel(ax.get_ylabel(), fontsize=12)
+
+# Outras configurações
+ax.spines["top"].set_visible(False)
+ax.spines["right"].set_visible(False)
+
+# Exibição do gráfico
+plt.show()
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: fig-ExampleStrat2R
+#| fig-cap: "Exemplo 2 de Simulação de Dados Estratificados em R."
+#| fig-cap-location: bottom
+#| fig-width: 6
+#| fig-height: 4
+
+# Geração de dados
+set.seed(11111)
+n <- 150
+Turno <- sample(c("Manhã", "Tarde", "Noite"), size = n, replace = TRUE)
+Defeitos <- rbinom(n, size = 10, prob = 1/3)
+
+# Data frame
+df <- data.frame(Turno = Turno, Defeitos = Defeitos)
+
+# Gráfico boxplot
+ggplot(df, aes(x = Turno, y = Defeitos, fill = Turno)) +
+  geom_boxplot() +
+  scale_fill_brewer(palette = "Set2") +
+  labs(x = "Turno", y = "Defeitos") +
+  theme_minimal(base_size = 12) +
+  theme(
+    legend.position = "none",          # Para imitar o `hue="Turno"` do seaborn
+    panel.grid.minor = element_blank(),
+    panel.grid.major = element_line(color = "gray90"),
+    axis.line = element_line(color = "black"),
+    axis.ticks = element_line(color = "black"),
+    panel.border = element_blank()
+  )
+```
+:::
+:::::
+
+### Folhas de Verificação
+
+São formulários usados para **coletar e organizar dados** de forma sistemática.
+
+-   Facilitam a visualização e interpretação de dados.
+-   Podem ser adaptados para diversos propósitos.
+
+#### Definição de Folha de Verificação
+
+> ""*Documento estruturado para registrar dados observacionais em tempo real.*
+
+Usada para:
+
+-   Contagem de defeitos
+-   Localização de falhas
+-   Frequência de ocorrências
+
+🤔 Verificação: Distribuição do Processo de Produção\
+🤔 Verificação: Item Defeituoso\
+🤔 Verificação: Localização de Defeitos\
+🤔 Verificação: Causas de um defeito ou falha\
+🤔 Verificação: Satisfação do Cliente (ex.: questionários de satisfação)
+
+![**Exemplo de folha de verificação de defeitos na lataria de um carro.**](images/FOLHA_VERIF.png){fig-align="center"}
+
+::::: columns
+
+::: {.column width="50%"}
+```{python}
+#| label: fig-ExampleVerifPy
+#| fig-cap: "Exemplo Gráfico da Folha de Verificação em Python."
+#| fig-cap-location: bottom
+#| fig-width: 6
+#| fig-height: 4
+
+# Dados da Folha de Verificação
+defect_types = ["Amassado", "Arranhão", "Bolha", "Mancha"]
+defect_counts = [3, 7, 6, 9]
+
+# Configurações de Figura
+fig, ax = plt.subplots(figsize=(6, 4), dpi=600)
+
+# Gráfico de Barras
+sns.barplot(x=defect_types, y=defect_counts, ax=ax)
+
+# Configurações de eixos e títulos
+ax.set_xlabel("Defeito", fontsize=12)
+ax.set_ylabel("Quantidade", fontsize=12)
+
+# Outras configurações
+ax.spines["top"].set_visible(False)
+ax.spines["right"].set_visible(False)
+
+# Exibição do gráfico
+plt.show()
+```
+
+:::
+
+::: {.column width="50%"}
+
+```{r}
+#| label: fig-ExampleVerifR
+#| fig-cap: "Exemplo Gráfico da Folha de Verificação em R."
+#| fig-cap-location: bottom
+#| fig-width: 6
+#| fig-height: 4
+
+# Dados da Folha de Verificação
+tipos <- c("Amassado", "Arranhão", "Bolha", "Mancha")
+quantidades <- c(3, 7, 6, 9)
+
+# Gráfico de Barras
+ggplot(data = NULL, aes(x = tipos, y = quantidades)) +
+  geom_bar(stat = "identity", fill = "blue") +
+  labs(x = "Defeito", y = "Quantidade") +
+  theme_classic(base_size = 12)
+```
+
+:::
+:::::
+
+#### Conclusão sobre Folhas de Verificação
+
+✅ Facilitam a **padronização da coleta de dados** \
+✅ Auxiliam na **identificação de padrões** \
+✅ São a **base para análises gráficas e estatísticas posteriores** 
+
+### Diagrama de Ishikawa
+
+> Também conhecido como diagrama de causa e efeito ou espinha de peixe.
+
+- Ferramenta para análise de problemas.
+- Organiza causas potenciais de um efeito específico.
+
+#### Como construir um Diagrama de Ishikawa
+
+1. Defina claramente o problema (efeito).
+2. Trace uma linha horizontal com o problema no final (efeito).
+3. Adicione as categorias principais de causa (método, máquina, mão de obra, material, meio ambiente, medição, etc.)
+4. Liste causas específicas em cada categoria.
+
+![**Exemplo de diagrama de causa e efeito (Ishikawa).**](images/DIAGRAM_ISHIKAWA.png){fig-align="center"}
+
+:::: progress
+:::: {.progress-bar style="width: 100%;"}
+::::
+::::

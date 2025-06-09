@@ -12,24 +12,24 @@ book:
       - name: "Universidade Federal do Pará"
       - name: "Instituto de Ciências Exatas e Naturais"
       - name: "Falculdade de Estatística"
-      
-  page-footer:
-    left: |
-      **SILVA, B.C.R**
-    right: |
-      Construído usando o <a href="https://quarto.org/"> Pacote Quarto</a>.
+
+  page-footer: 
+    left: "Copyright 2025, **SILVA, B.C.R**" 
+    right: 
+      - icon: github
+        href: https://github.com/
+      - icon: twitter 
+        href: https://twitter.com/
   
   date: "05/06/2025"
 
-  description: "Material de apoio para a disciplina de Controle Estatístico de Qualidade"
-
   downloads: [pdf, docx]
-  sharing: [twitter, facebook]
   page-navigation: true
 
   chapters:
     - index.qmd
-    - summary.qmd
+    - UsualPlots.qmd
+    - Exercises.qmd
     - references.qmd
 
 bibliography: references.bib
@@ -37,15 +37,15 @@ bibliography: references.bib
 format:
   html:
     number-sections: true
-    toc: true
-    toc-depth: 2
-    toc-title: "Índice"
+    df-print: paged
+    theme:
+      light: [blue,custom.scss]
+      dark:  [cyborg,custom.scss]
     code-fold: true
     code-tools: true
-    code-copy: true
-    theme:
-      - cosmo
-      - brand
+    code-link: true
+    toc-title: Índice
+    toc-location: right
   pdf:
     documentclass: scrreprt
     fig-pos: "H"
@@ -55,4 +55,20 @@ format:
     header-includes: |
       \usepackage{indentfirst}
     fontsize: 12pt
-    geometry: [left=2cm, top=2cm, right=2cm, bottom=2cm]
+    geometry: [left=3cm, top=3cm, right=2cm, bottom=2cm]
+    echo: false
+  docx:
+    number-sections: true
+
+execute:
+  echo: true
+  warning: false
+  message: false
+  engine: knitr  # Garante suporte a múltiplas linguagens
+  kernels:
+    python: python3
+    r: ir
+  keep-hidden: true
+  freeze: auto
+
+lang: pt-BR

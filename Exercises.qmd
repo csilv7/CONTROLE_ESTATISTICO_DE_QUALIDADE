@@ -1,0 +1,87 @@
+```{=html}
+<style>
+  body{text-align: justify}
+</style>
+```
+
+:::: progress
+:::: {.progress-bar style="width: 100%;"}
+::::
+::::
+
+# Listas e Exercícios
+
+---
+
+## Lista I
+
+### 1. Simule (no R **e** Python) um conjunto de dados com três turnos de produção e números de defeitos.
+#### a. Faça um boxplot para comparar os defeitos entre turnos.
+#### b. Comente se a estratificação revela alguma diferença relevante.
+
+### 2. Monte um diagrama de espinha de peixe para o seguinte problema: "Produto entregue com atraso". Use papel ou software. Sugestões de Pacote no R: `Mermaid` e `DiagrammeR`.
+
+### 3. Com base nos dados a seguir, construa um gráfico de Pareto (no papel, R ou Python) e interprete os resultados.
+
+| **Problemas**    | **Frequência** |
+| -------------    | -------------- |
+| Risco            | 80             |
+| Mancha           | 68             |
+| Corte            | 50             |
+| Tinta Fraca      | 45             |
+| Erro de Montagem | 30             |
+
+#### a. Quais problemas devem ser atacados primeiro?
+#### b. Qual o percentual acumaludo dos dois problemas mais frquentes?
+
+### 4. Simule 200 observações com $\mu = 50$ e $\sigma = 10$.
+#### a.Crie um histograma.
+#### b. Defina limites de especificaçãp mais estreitos: $LIE = 45$ e $LSE = 55$.
+
+### 5. Reúna-se com seu grupo faça o seguinte:
+#### ⚫ Colete um conjunto de dados reais (ex.: tempo para executar uma tarefa simples).
+#### ⚫ Classifique os dados usando estratificação (ex.: por turno, grupo, dia, etc.).
+#### ⚫ Construa um histograma, gráfico de Pareto e, se possível um diagrama de Ishikawa para o problema observado.
+#### ⚫ Apresente os resultados com uma breve conclusão.
+
+---
+
+# Lista II
+
+## 1. Utilize os vetores abaixo e construa o diagrama de dispersão. $X = \begin{bmatrix} 5 \\ 7 \\ 11 \\ 13 \\ 15 \end{bmatrix}$ e $Y = \begin{bmatrix} 2 \\ 4 \\ 8 \\ 10 \\ 12 \end{bmatrix}$.
+
+### a. Descreva o tipo de relação entre as variáveis.
+
+### b. Adicione uma reta de tendência.
+
+## 2. Geração de dados com correlação negativa.
+
+### a. Gere dois vetores de 30 elementos com correlação negativa.
+
+### b. Construa o gráfico de dispersão.
+
+### c. Calcule a correlação de Pearson.
+
+## 3. Dados reais - `mtcars`. Utilize o conjunto de dados `mtcars`.
+
+### a. Há relação entre `mpg` (milhas por galão) e `wt` (peso)?
+
+### b. Faça o gráfico e interprete-o.
+
+### c. Calcule a correlação de maneira adequada.
+
+### d. A relação é positiva ou negativa?
+
+## 4. Construção de Função - Crie uma função `correlacao_diagnostico()` que:
+
+* Plote o gráfico de dispersão
+* Calcule o `r`
+* Execute o teste `cor_test()`
+* Apresente o `valor-p` do teste
+
+---
+
+:::: progress
+:::: {.progress-bar style="width: 100%;"}
+::::
+::::

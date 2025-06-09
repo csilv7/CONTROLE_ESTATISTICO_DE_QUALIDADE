@@ -1,0 +1,736 @@
+```{=html}
+<style>
+  body{text-align: justify}
+</style>
+```
+
+:::: progress
+:::: {.progress-bar style="width: 100%;"}
+::::
+::::
+
+# Gráficos Usuais
+
+```{r}
+#| warning: false
+#| message: false
+#| label: Configuration R
+
+library(ggplot2)
+library(gridExtra)
+library(dplyr)
+
+library(reticulate)
+use_python("C:/Users/user/anaconda3/python.exe", required = TRUE)
+```
+
+```{python}
+#| label: Configuration Python
+
+# Tratamentos de Dados
+import numpy as np
+import pandas as pd
+
+# Funções Estatísticas
+from scipy import stats
+
+# Visualizações Gráficas
+import matplotlib.pyplot as plt
+import seaborn as sns
+```
+
+## Histograma
+
+* **O que é um Histograma?**
+
+    - Um histograma é uma representação gráfica da distribuição de frequências de dados contínuos.
+    - Mostra como os valores se distribuem por intervalos (classes).
+    - Ajuda a visualizar:
+        - Tencência central
+        - Dispersão
+        - Assimetria
+        - Possíveis anomalias
+
+### Construção do Histograma com Limites de Especificação
+
+- Limites de especificação:
+    - **Limite inferior de especificação (LSE):** menor valor permitido para uma característica de qualidade. \
+    - **Limite superior de especificação (LIE):** maior valor permitido para uma característica de qualidade.
+
+- Etapas principais:
+    1. Coletar dados contínuos (ex.: tempo, peso, medida, etc.).
+    2. Definir os intervalos de classe.
+    3. Contar quantos dados caem em cada intervalo.
+    4. Representar as frequências com barras adjacentes.
+
+```{python}
+#| label: fig-ExampleHistPy
+#| fig-cap: "Exemplo de Histograma com Limites de Especificação em Python."
+#| fig-cap-location: bottom
+#| fig-width: 12
+#| fig-height: 4
+
+# Exemplo Prático: Histograma
+np.random.seed(11111)
+values = np.random.normal(loc=np.mean([85, 120]), scale=5.5, size=100)
+
+# Configurações de Figura
+fig, axes = plt.subplots(1, 2, figsize=(12, 4), dpi=600)
+
+# Histogrma
+sns.histplot(data=values, bins=7, binrange=(85, 120), binwidth=5, edgecolor="white", ax=axes[0])
+sns.histplot(data=values, bins=7, binrange=(85, 120), binwidth=5, edgecolor="white", ax=axes[1])
+
+# LIE & LSE
+axes[1].axvline(x=90, color="red", linestyle="dashdot", label="LIE")
+axes[1].axvline(x=110, color="red", linestyle="dashed", label="LSE")
+
+# Configurações de legenda
+axes[1].legend(prop={"size":8}, loc="upper right", frameon=False)
+
+# Configurações de eixos e títulos
+axes[0].set_title("Histograma das Medidas", fontsize=12, weight="bold")
+axes[1].set_title("Histograma das Medidas c/ Limites de Especificação", fontsize=12, weight="bold")
+
+for ax in axes:
+    # Configurações de eixos e títulos
+    ax.set_xlabel("Valor Medido", fontsize=12)
+    ax.set_ylabel("Frequência", fontsize=12)
+
+    # Outras configurações
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+
+# Ajuste do Layout e Exibição da Figura
+fig.tight_layout()
+plt.show()
+```
+
+```{r}
+#| label: fig-ExampleHistR
+#| fig-cap: "Exemplo de Histograma com Limites de Especificação em R."
+#| fig-cap-location: bottom
+#| fig-width: 12
+#| fig-height: 4
+
+# Exemplo Prático: Histograma
+set.seed(11111)
+valores <- rnorm(100, mean = mean(c(85, 120)), sd = 5.5)
+
+# Base para histograma
+df <- data.frame(valor = valores)
+
+# Histograma 1
+hist1 <- ggplot(df, aes(x = valor)) +
+  geom_histogram(binwidth = 5, boundary = 85, color = "white", fill = "#3B9AB2") +
+  labs(title = "Histograma das Medidas", x = "Valor Medido", y = "Frequência") +
+  theme_minimal(base_size = 12) +
+  theme(
+    panel.grid.minor = element_blank(),
+    panel.grid.major = element_line(color = "gray90"),
+    axis.line = element_line(color = "black"),
+    axis.ticks = element_line(color = "black"),
+    panel.border = element_blank()
+  )
+
+# Histograma 2 com LIE e LSE
+hist2 <- ggplot(df, aes(x = valor)) +
+  geom_histogram(binwidth = 5, boundary = 85, color = "white", fill = "#3B9AB2") +
+  geom_vline(xintercept = 90, color = "red", linetype = "dotdash", size = 0.8) +
+  geom_vline(xintercept = 110, color = "red", linetype = "dashed", size = 0.8) +
+  annotate("text", x = 90, y = Inf, label = "LIE", vjust = 2, hjust = -0.1, size = 3, color = "red") +
+  annotate("text", x = 110, y = Inf, label = "LSE", vjust = 2, hjust = -0.1, size = 3, color = "red") +
+  labs(title = "Histograma das Medidas c/ Limites de Especificação", x = "Valor Medido", y = "Frequência") +
+  theme_minimal(base_size = 12) +
+  theme(
+    panel.grid.minor = element_blank(),
+    panel.grid.major = element_line(color = "gray90"),
+    axis.line = element_line(color = "black"),
+    axis.ticks = element_line(color = "black"),
+    panel.border = element_blank()
+  )
+
+# Exibição lado a lado
+grid.arrange(hist1, hist2, ncol = 2)
+```
+
+* ✅ Quando a maioria dos dados está entre LIE e LSE ➡ **Processo Capaz**.
+* ⚠ Quando muitos dados estão fora dos limites ➡ **Processo Não Capaz**.
+
+## Gráfico de Pareto
+
+É um gráfico de barras que **ordena as causas ou categorias em ordem decrescente de frequência**.
+
+- Baseado no Princípio de Pareto (80/20)
+ - 80% dos resultados provêm de 20% das causas
+- Ajuda a identificar os principais problemas
+
+* **Exemplo:** Dados Simulados de Defeitos.
+
+```{r}
+#| label: tbl-ExamplesParetoPlot
+#| tbl-cap: "Dados Simulados de Defeitos."
+
+df <- data.frame(
+    Categoria = c("Erro A", "Erro B", "Erro C", "Erro D", "Erro E"),
+    Freq = c(40, 25, 15, 12, 8)
+)
+
+knitr::kable(
+    df,
+    escape = FALSE,
+    align = "c",
+    booktabs = TRUE
+)
+```
+
+:::: {.columns}
+::: {.column width=50%}
+```{python}
+#| label: fig-ExampleParetoPy
+#| fig-cap: "Exemplo do Gráfico de Pareto em Python."
+#| fig-cap-location: bottom
+#| fig-width: 8
+#| fig-height: 4
+
+# Exemplo do Gráfico de Pareto
+df = pd.DataFrame({
+    "Causa": ["Erro A", "Erro B", "Erro C", "Erro D", "Erro E"],
+    "Frequência": [40, 25, 15, 12, 8],
+})
+
+df["Percentual Acumulado"] = df["Frequência"].cumsum() / df["Frequência"].sum() * 100
+
+# Configurações de Figura
+fig, ax1 = plt.subplots(figsize=(6, 4), dpi=600)
+
+# Criando um 2º eixo y
+ax2 = ax1.twinx()
+
+# Gráfico de Barras - Frequência
+sns.barplot(data=df, x="Causa", y="Frequência", ax=ax1)
+
+# Gráfico de Linhas - Percentual Acumulado
+sns.lineplot(data=df, x="Causa", y="Percentual Acumulado", marker="o", linestyle="-", color="red", ax=ax2)
+
+# Configurações de eixos e títulos
+ax1.set_xlabel("Causa", fontsize=12)
+ax1.set_ylabel("Frequência", fontsize=12)
+#ax1.set_ylim(0, 40)
+
+ax2.set_ylabel("Percentual Acumulado", fontsize=12)
+#ax2.set_ylim(0, 100)
+ax2.set_yticklabels([f"{fr}%" for fr in np.arange(0, 101, 20)])
+
+# Outras configurações
+ax1.spines["top"].set_visible(False)
+ax2.spines["top"].set_visible(False)
+ax1.spines["bottom"].set_visible(False)
+ax2.spines["bottom"].set_visible(False)
+
+# Exibição da Figura
+plt.show()
+```
+:::
+::: {.column width=50%}
+```{r}
+#| label: fig-ExampleParetoR
+#| fig-cap: "Exemplo do Gráfico de Pareto em R."
+#| fig-cap-location: bottom
+#| fig-width: 8
+#| fig-height: 4
+
+df <- data.frame(
+  Causa = c("Erro A", "Erro B", "Erro C", "Erro D", "Erro E"),
+  Frequencia = c(40, 25, 15, 12, 8)
+)
+
+# Cálculo do Percentual Acumulado
+df$PercentualAcumulado <- cumsum(df$Frequencia) / sum(df$Frequencia) * 100
+
+# ------------------------------
+# Gráfico de Pareto
+# ------------------------------
+# Base do gráfico com barras
+p <- ggplot(df, aes(x = Causa)) +
+  geom_bar(aes(y = Frequencia), stat = "identity", fill = "steelblue") +
+  geom_line(aes(y = PercentualAcumulado * max(Frequencia) / 100), 
+            group = 1, color = "red", size = 1) +
+  geom_point(aes(y = PercentualAcumulado * max(Frequencia) / 100), 
+             color = "red", size = 3) +
+  
+  # Eixos primário e secundário
+  scale_y_continuous(
+    name = "Frequência",
+    limits = c(0, 40),
+    sec.axis = sec_axis(
+      trans = ~ . / max(df$Frequencia) * 100,
+      name = "Percentual Acumulado",
+      labels = function(x) paste0(x, "%")
+    )
+  ) +
+  
+  labs(x = "Causa") +
+  theme_classic(base_size = 12) +
+  theme(
+    axis.line.y.right = element_line(color = "red"),
+    axis.ticks.y.right = element_line(color = "red"),
+    axis.text.y.right = element_text(color = "red"),
+    axis.title.y.right = element_text(color = "red"),
+    panel.grid.minor = element_blank()
+  )
+
+# ------------------------------
+# Exibição do gráfico
+# ------------------------------
+print(p)
+```
+:::
+::::
+
+## Diagrama de Correlação ou Diagrama de Dispersão
+
+### Construção do Diagrama de Correlação
+
+* **Passos:**
+
+    1. Coletar pares de observações ($X$, $Y$);
+    2. Plotar os pontos em um gráfico de dispersão;
+    3. Analisar visualmente a existência e o tipo de correlação.
+
+* **Correlação Linear Positiva:**
+
+    * Quando uma variável aumenta, a outra também tende a aumentar.
+    * Os pontos seguem uma tendência crescente.
+
+* **Correlação Linear Negativa:**
+
+    * Quando uma variável aumenta, a outra também tende a diminuir.
+    * Os pontos seguem uma tendência decrescente.
+
+```{python}
+#| label: fig-ExampleScatterPy
+#| fig-cap: "Exemplo de Diagrama de Dispersão em Python."
+#| fig-cap-location: bottom
+#| fig-width: 12
+#| fig-height: 4
+
+# Exemplos: Para Diagramas de Dispersão
+np.random.seed(11111)
+
+x1 = np.random.normal(loc=50, scale=10, size=100)
+y1 = 3/2 * x1 + np.random.normal(loc=0, scale=10, size=100)
+
+x2 = np.random.normal(loc=50, scale=10, size=100)
+y2 = -3/2 * x2 + np.random.normal(loc=0, scale=10, size=100)
+
+# Configurações de Figura
+fig, axes = plt.subplots(1, 2, figsize=(12, 4), dpi=600)
+
+# Diagramas de Dispersão
+sns.scatterplot(x=x1, y=y1, ax=axes[0])
+sns.scatterplot(x=x2, y=y2, ax=axes[1])
+
+# Configurações de eixos e títulos
+axes[0].set_title("Correlação Linear Positiva", fontsize=12, weight="bold")
+axes[1].set_title("Correlação Linear Negativa", fontsize=12, weight="bold")
+
+for ax in axes:
+    # Configurações de eixos e títulos
+    ax.set_xlabel("Variável X", fontsize=12)
+    ax.set_ylabel("Variável Y", fontsize=12)
+
+    # Outras configurações
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+
+# Ajuste do Layout e Exibição da Figura
+fig.tight_layout()
+plt.show()
+```
+
+```{r}
+#| label: fig-ExampleScatterR
+#| fig-cap: "Exemplo de Diagrama de Dispersão em R."
+#| fig-cap-location: bottom
+#| fig-width: 8
+#| fig-height: 4
+
+# Semente para reprodutibilidade
+set.seed(11111)
+
+# Geração dos dados
+x1 <- rnorm(100, mean = 50, sd = 10)
+y1 <- (3/2) * x1 + rnorm(100, mean = 0, sd = 10)
+
+x2 <- rnorm(100, mean = 50, sd = 10)
+y2 <- (-3/2) * x2 + rnorm(100, mean = 0, sd = 10)
+
+# Data frames para os gráficos
+df1 <- data.frame(X = x1, Y = y1)
+df2 <- data.frame(X = x2, Y = y2)
+
+# Diagrama de Dispersão: Correlação Positiva
+scatter1 <- ggplot(df1, aes(x = X, y = Y)) +
+  geom_point(color = "#1f77b4") +
+  labs(title = "Correlação Linear Positiva", x = "Variável X", y = "Variável Y") +
+  theme_minimal(base_size = 12) +
+  theme(
+    panel.grid.minor = element_blank(),
+    panel.grid.major = element_line(color = "gray90"),
+    axis.line = element_line(color = "black"),
+    axis.ticks = element_line(color = "black"),
+    panel.border = element_blank()
+  )
+
+# Diagrama de Dispersão: Correlação Negativa
+scatter2 <- ggplot(df2, aes(x = X, y = Y)) +
+  geom_point(color = "#d62728") +
+  labs(title = "Correlação Linear Negativa", x = "Variável X", y = "Variável Y") +
+  theme_minimal(base_size = 12) +
+  theme(
+    panel.grid.minor = element_blank(),
+    panel.grid.major = element_line(color = "gray90"),
+    axis.line = element_line(color = "black"),
+    axis.ticks = element_line(color = "black"),
+    panel.border = element_blank()
+  )
+
+# Exibição lado a lado
+grid.arrange(scatter1, scatter2, ncol = 2)
+```
+
+* **Ausência de Correlação Linear:**
+
+    * Os pontos não seguem padrão algum.
+    * Indica ausência de relação linear.
+
+:::: {.columns}
+::: {.column width=50%}
+```{python}
+#| label: fig-ExampleScatterNonePy
+#| fig-cap: "Exemplo de Diagrama de Dispersão (Sem Relação Linear) em Python."
+#| fig-cap-location: bottom
+#| fig-width: 6
+#| fig-height: 4
+
+# Exemplos: Para Diagramas de Dispersão
+np.random.seed(11111)
+
+x1 = np.random.normal(loc=50, scale=5, size=100)
+y1 = np.random.normal(loc=50, scale=15, size=100)
+
+# Configurações de Figura
+fig, ax = plt.subplots(figsize=(6, 4), dpi=600)
+
+# Diagramas de Dispersão
+sns.scatterplot(x=x1, y=y1, ax=ax)
+
+# Configurações de eixos e títulos
+ax.set_title("Ausência de Correlação Linear", fontsize=12, weight="bold")
+ax.set_xlabel("Variável X", fontsize=12)
+ax.set_ylabel("Variável Y", fontsize=12)
+
+# Outras configurações
+ax.spines["top"].set_visible(False)
+ax.spines["right"].set_visible(False)
+
+# Exibição da Figura
+plt.show()
+```
+:::
+::: {.column width=50%}
+```{r}
+#| label: fig-ExampleScatterNoneR
+#| fig-cap: "Exemplo de Diagrama de Dispersão (Sem Relação Linear) em R."
+#| fig-cap-location: bottom
+#| fig-width: 6
+#| fig-height: 4
+
+# Semente para reprodutibilidade
+set.seed(11111)
+
+# Geração dos dados
+x1 <- rnorm(100, mean = 50, sd = 5)
+y1 <- rnorm(100, mean = 50, sd = 15)
+
+# Data frame
+df <- data.frame(X = x1, Y = y1)
+
+# Diagrama de Dispersão
+ggplot(df, aes(x = X, y = Y)) +
+  geom_point(color = "#1f77b4") +
+  labs(
+    title = "Ausência de Correlação Linear",
+    x = "Variável X",
+    y = "Variável Y"
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    panel.grid.minor = element_blank(),
+    panel.grid.major = element_line(color = "gray90"),
+    axis.line = element_line(color = "black"),
+    axis.ticks = element_line(color = "black"),
+    panel.border = element_blank()
+  )
+```
+:::
+::::
+
+### Cálculo do Coeficiente de Correlação Linear de Pearson
+
+O *Coeficiente de Correlação Linear de Pearson* mede a força e direção da relação linear entre duas variáveis. Tal medida é obtida a partir da expressão:
+
+$$
+\hat{\rho} = r = \dfrac{Cov(X, Y)}{\sigma_{X}\sigma_{Y}} = \dfrac{\sum_{i=1}^{n} (x_{i}-\bar{x})(y_{i}-\bar{y})}{\sqrt{\sum_{i=1}^{n} (x_{i}-\bar{x})^{2}\sum_{i=1}^{n} (y_{i}-\bar{y})^{2}}}
+$$ {#eq-CoefCorrPearson}
+
+* **Obeservações Importantes:**
+
+    - Varia de $-1 \text{ a } 1$:
+        - $1$: correlação positiva perfeita;
+        - $0$: sem correlação linear;
+        - $-1$: correlação negativa perfeita.
+
+### Teste de Hipótese para o Coeficiente de Correlação Linear de Pearson
+
+Normalmente, se testa a significância de $\hat{\rho}$ com as seguintes hipóteses:
+
+$$
+\begin{cases}
+H_{0}: \text{Ausência de associação linear } (\rho = 0); \\
+H_{1}: \text{Presença de associação linear } (\rho \neq 0).
+\end{cases}
+$$ {#eq-HypotesisCorrPearson}
+
+Usa-se para testar as hipótes da @eq-HypotesisCorrPearson a seguinte estatística de teste:
+
+$$
+t_{0} = \dfrac{\hat{\rho} \sqrt{n - 2}}{\sqrt{1 - \hat{\rho}^{2}}},
+$$ {#eq-StatisticCorrPearson}
+
+\noindent que sob a hipótese nula ($H_{0}$) segue uma distribuição $t_{n - 2}$. Vejamos o exemplo:
+
+```{python}
+#| label: Classe em Python
+
+# Função equivalente ao shapiro.test do R
+def shapiro_test(x):
+    W, p_value = stats.shapiro(x)
+    print(
+        f"""
+        Estatística de Teste (W) = {W:.4f}
+        Nível Descritivo (p-value) = {p_value:.4f}
+        """
+    )
+
+# Classe para calcular o coeficiente de correlação de Pearson e realizar testes de hipótese
+class PearsonCorrelation:
+    """
+    Classe para calcular o coeficiente de correlação de Pearson e realizar testes de hipótese.
+    """
+
+    def __init__(self, x, y, alpha=0.05):
+        self.x = x
+        self.y = y
+        self.alpha = alpha
+
+        self.r = None
+        self.interval_confidence = None
+
+        self.t_statistic = None
+        self.df = None
+        self.p_value = None
+
+    def calculate_correlation(self):
+        """
+        Calcula o coeficiente de correlação de Pearson.
+        """
+        r = np.corrcoef(self.x, self.y)[0, 1]
+        z = np.arctanh(r)
+        se = 1 / np.sqrt(len(self.y) - 3)
+        lower_bound = np.tanh(z - stats.norm.ppf(1 - self.alpha / 2) * se)
+        upper_bound = np.tanh(z + stats.norm.ppf(1 - self.alpha / 2) * se)
+
+        self.r = r
+        self.interval_confidence = (lower_bound, upper_bound)
+
+        return r, (lower_bound, upper_bound)
+
+    def hypothesis_test(self):
+        """
+        Realiza o teste de hipótese para o coeficiente de correlação.
+        """
+        n = len(self.y)
+        self.t_statistic = self.r * np.sqrt(n - 2) / np.sqrt(1 - self.r**2)
+        self.df = n - 2
+        self.p_value = stats.t.sf(np.abs(self.t_statistic), self.df) * 2
+
+        return self.t_statistic, self.df, self.p_value
+
+    def result_print(self):
+        """
+        Imprime os resultados do cálculo e do teste de hipótese.
+        """
+        print(
+            f"""
+            - Coeficiente de Correlação Linear de Pearson:
+            r = {self.r:.4f}
+            Intervalo de Confiança ({self.alpha*100:.0f}%):
+            ({self.interval_confidence[0]:.4f}, {self.interval_confidence[1]:.4f})
+
+            - Teste de Hipótese:
+            t = {self.t_statistic:.4f}, df = {self.df}, p-value = {self.p_value:.4f}
+            """
+        )
+```
+
+* **Geração do Dados & Visualização Gráfica:**
+
+:::: {.columns}
+::: {.column width=50%}
+```{python}
+#| label: fig-ExampleScatterCompletPy
+#| fig-cap: "Dados Simulados para Exemplo em Python."
+#| fig-cap-location: bottom
+#| fig-width: 6
+#| fig-height: 4
+
+# Exemplo Completo: Passo a Passo
+np.random.seed(123)
+
+x1 = np.random.normal(loc=10, scale=1, size=30)
+y1 = x1 + np.random.normal(loc=0, scale=1, size=30)
+
+# Configurações de Figura
+fig, ax = plt.subplots(figsize=(6, 4), dpi=600)
+
+# Diagramas de Dispersão
+sns.scatterplot(x=x1, y=y1, color="lightblue", ax=ax)
+
+# Configurações de eixos e títulos
+ax.set_title("Relação entre X e Y", fontsize=12, weight="bold")
+ax.set_xlabel("Variável X", fontsize=12)
+ax.set_ylabel("Variável Y", fontsize=12)
+
+# Outras configurações
+ax.spines["top"].set_visible(False)
+ax.spines["right"].set_visible(False)
+
+# Exibição da Figura
+plt.show()
+```
+:::
+::: {.column width=50%}
+```{r}
+#| label: fig-ExampleScatterCompletR
+#| fig-cap: "Dados Simulados para Exemplo em R."
+#| fig-cap-location: bottom
+#| fig-width: 6
+#| fig-height: 4
+
+# Fixando semente para geração
+set.seed(123)
+
+# Gerando Dados
+x <- rnorm(30, mean = 10)
+y <- x + rnorm(30)
+
+# Ajustando Formato
+df <- data.frame(X = x, Y = y)
+
+# Gerando Plot
+ggplot(df, aes(x = X, y = Y)) +
+  geom_point(color = "lightblue", size = 3) +
+  labs(title = "Relação entre X e Y",
+       x = "Variável X", y = "Variável Y") +
+  theme_classic(base_size = 12)
+```
+:::
+::::
+
+* **Cálculo do Coeficiente de Correlação:**
+
+:::: {.columns}
+::: {.column width=50%}
+```{python}
+#| label: Coef Corr Linear de Pearson em Python
+
+# Nível de Significância
+ns = 0.05
+
+# Exemplo de uso da classe PearsonCorrelation
+Pearson = PearsonCorrelation(x1, y1, alpha=ns)
+
+# Coeficiente de Correlação de Pearson
+r, ci = Pearson.calculate_correlation()
+
+# Impressão dos resultados
+print(f"Coeficiente de Correlação de Pearson: r = {r:.4f}")
+print(f"Intervalo de Confiança ({(1 - ns) * 100:.0f}%): {ci[0]:.4f}, {ci[1]:.4f}")
+```
+:::
+::: {.column width=50%}
+```{r}
+#| label: Coef Corr Linear de Pearson em R
+
+# Nível de Significância
+ns <- 0.05
+
+# Coeficiente de Correlação de Pearson
+result <- cor.test(x, y)
+
+# Impressão dos resultados
+cat("Coeficiente de Correlação de Pearson: r =", round(result$estimate, 4), "\n")
+cat("Intervalo de Confiança (", (1 - ns)*100,"%):", round(result$conf.int[1], 4), round(result$conf.int[2], 4))
+```
+:::
+::::
+
+* **Teste de Hipótes para o Coeficiente de Correlação:**
+
+:::: {.columns}
+::: {.column width=50%}
+```{python}
+#| label: Teste de Hipóteses Coef Corr Linear de Pearson em Python
+
+# Verificação dos Pressupostos (Normalidade)
+shapiro_test(x1)
+shapiro_test(y1)
+
+# Teste de Hipótese
+result = Pearson.hypothesis_test()
+
+# Teste de Hipótese
+print(f"Estatística de Teste (t) = {result[0]:.4f}")
+print(f"Graus de Liberdade (df) = {result[1]}")
+print(f"Nível Descritivo (p-value) = {result[2]:.4f}")
+```
+:::
+::: {.column width=50%}
+```{r}
+#| label: Teste de Hipóteses Coef Corr Linear de Pearson em R
+
+# Verificação dos Pressupostos (Normalidade)
+shapiro.test(x)
+shapiro.test(y)
+
+# Impressão dos resultados
+cat("Estatística de Teste: t =", round(result$statistic, 4), "\n")
+cat("Graus de Liberdade: gl =", result$parameter, "\n")
+cat("Valor-p:", round(result$p.value, 4), "\n")
+```
+:::
+::::
+
+### Conclusão
+
+* São úteis para investigar relação entre variáveis ✅
+* Ajudam a detectar tendências visuais ✅
+* O coeficiente de Pearson quantifica a força da relação ✅
+* Há um teste que verifica a significância estatística dessa relação ✅
+
+:::: progress
+:::: {.progress-bar style="width: 100%;"}
+::::
+::::
