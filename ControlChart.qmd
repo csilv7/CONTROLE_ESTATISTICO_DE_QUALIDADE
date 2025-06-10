@@ -176,6 +176,647 @@ Se $X_{i} \sim \text{Normal}(\mu, \sigma^{2})$, então $$P \left( \dfrac{\mu_{w}
 
 * Útil quando se deseja monitorar diretamente a variância do processo.
 
+### Exemplo de Construção Didática de Gráficos de Controle
+
+* **Exemplo (6.1) página 239 [@montgomery2013controle] - *Medições da Largura de Fluxo (mícrons) para o Processo de Cozimento Duro*:** *"O processo de cozimento duro é utilizado em conjunto com a fotolitografia na fabricação de semicondutores. Desejamos estabelecer o controle estatístico da largura de fluxo do resistor neste processo utilizando gráficos de $\bar{X}$ e $\bar{AT}$. Vinte e cinco amostras, cada uma com wafers de tamanho cinco, foram coletadas quando acreditamos que o processo está sob controle. O intervalo de tempo entre as amostras ou subgrupos é de uma hora. Os dados de medição da largura de fluxo (em x mícrons) dessas amostras são mostrados na Tabela 6.1."*
+
+```{python}
+# Dados de Exemplo
+list_of_data = [
+    [1.3235, 1.4128, 1.6744, 1.4573],
+    [1.4314, 1.3592, 1.6075, 1.4666],
+    [1.4284, 1.4871, 1.4932, 1.4324],
+    [1.5028, 1.6352, 1.3841, 1.2831],
+    [1.5604, 1.2735, 1.5265, 1.4362],
+    [1.5955, 1.5451, 1.3574, 1.3281],
+    [1.6274, 1.5064, 1.8366, 1.4177],
+    [1.4190, 1.4303, 1.6637, 1.6067],
+    [1.3884, 1.7277, 1.5355, 1.5176],
+    [1.4039, 1.6697, 1.5089, 1.6477],
+    [1.4158, 1.7667, 1.4278, 1.5927],
+    [1.5821, 1.3355, 1.5777, 1.3908],
+    [1.2856, 1.4106, 1.4447, 1.6388],
+    [1.4951, 1.4036, 1.5893, 1.6458],
+    [1.3589, 1.2863, 1.5996, 1.2497],
+    [1.5747, 1.5301, 1.5171, 1.1839],
+    [1.3680, 1.7269, 1.3957, 1.5019],
+    [1.4163, 1.3864, 1.3057, 1.6210],
+    [1.5796, 1.4185, 1.6541, 1.5116],
+    [1.7106, 1.4412, 1.2361, 1.3824],
+    [1.4371, 1.5051, 1.3485, 1.5670],
+    [1.4738, 1.5936, 1.6583, 1.4973],
+    [1.5917, 1.4333, 1.5551, 1.5295],
+    [1.6399, 1.5243, 1.5705, 1.5563],
+    [1.5797, 1.3663, 1.6240, 1.3732]
+]
+
+# Transformando em Array Multidimensional
+arr = np.array(list_of_data)
+
+# Visualizar
+arr
+```
+
+```{r}
+# Dados do Problema
+dados <- c(
+  1.3235, 1.4128, 1.6744, 1.4573,
+  1.4314, 1.3592, 1.6075, 1.4666,
+  1.4284, 1.4871, 1.4932, 1.4324,
+  1.5028, 1.6352, 1.3841, 1.2831,
+  1.5604, 1.2735, 1.5265, 1.4362,
+  1.5955, 1.5451, 1.3574, 1.3281,
+  1.6274, 1.5064, 1.8366, 1.4177,
+  1.4190, 1.4303, 1.6637, 1.6067,
+  1.3884, 1.7277, 1.5355, 1.5176,
+  1.4039, 1.6697, 1.5089, 1.6477,
+  1.4158, 1.7667, 1.4278, 1.5927,
+  1.5821, 1.3355, 1.5777, 1.3908,
+  1.2856, 1.4106, 1.4447, 1.6388,
+  1.4951, 1.4036, 1.5893, 1.6458,
+  1.3589, 1.2863, 1.5996, 1.2497,
+  1.5747, 1.5301, 1.5171, 1.1839,
+  1.3680, 1.7269, 1.3957, 1.5019,
+  1.4163, 1.3864, 1.3057, 1.6210,
+  1.5796, 1.4185, 1.6541, 1.5116,
+  1.7106, 1.4412, 1.2361, 1.3824,
+  1.4371, 1.5051, 1.3485, 1.5670,
+  1.4738, 1.5936, 1.6583, 1.4973,
+  1.5917, 1.4333, 1.5551, 1.5295,
+  1.6399, 1.5243, 1.5705, 1.5563,
+  1.5797, 1.3663, 1.6240, 1.3732
+)
+
+# Formatação de Vetor para Matriz & de Matriz para Data Frame
+tbl <- matrix(dados, ncol = 4, byrow = TRUE)
+tbl.df <- data.frame(tbl)
+
+# Visualizar
+tbl.df
+```
+
+1. Calcule os limites de controle para o gráfico $\bar{X}$.
+
+* **Exemplo em Python:**
+
+```{python}
+# Média por Linha e Média das Médias
+row_mean = np.mean(arr, axis=1)
+mean_X_bar = np.mean(row_mean)
+
+# Amplitude por Linha e Média da Amplitude
+row_range = np.ptp(arr, axis=1)
+mean_range = np.mean(row_range)
+
+# Valor de Referência
+A2 = 0.729
+
+# Limites de Controle
+LIC_X_bar = mean_X_bar - A2 * mean_range
+LSC_X_bar = mean_X_bar + A2 * mean_range
+
+# Impressão dos Resultados
+print(f"LIC = {LIC_X_bar:.4f}")
+print(f"LC = {mean_X_bar:.4f}")
+print(f"LSC = {LSC_X_bar:.4f}")
+```
+
+* **Exemplo em R:**
+
+```{r}
+# Média por Linha e Média das Médias
+row_mean <- apply(tbl.df, 1, mean)
+mean_X_bar <- mean(row_mean)
+
+# Função de Amplitude Total
+f.range <- function(vec) max(vec) - min(vec)
+
+# Amplitude por Linha e Média da Amplitude
+row_range <- apply(tbl.df, 1, f.range)
+mean_range <- mean(row_range)
+
+# Valor de Referência
+A2 <- 0.729
+
+# Limites de Controle
+LIC_X_bar = mean_X_bar - A2 * mean_range
+LSC_X_bar = mean_X_bar + A2 * mean_range
+
+# Impressão dos Resultados
+cat("LIC =", round(LIC_X_bar, 4), "\n")
+cat("LC =", round(mean_X_bar, 4), "\n")
+cat("LSC =", round(LSC_X_bar, 4))
+```
+
+2. Calcule os limites de controle para o gráfico $\bar{AT}$.
+
+* **Exemplo em Python:**
+
+```{python}
+# Valores de Referência
+D3 = 0
+D4 = 2.282
+
+# Limites de Controle
+LIC_AT = D3 * mean_range
+LSC_AT = D4 * mean_range
+
+# Impressão dos Resultados
+print(f"LIC = {LIC_AT:.4f}")
+print(f"LC = {mean_range:.4f}")
+print(f"LSC = {LSC_AT:.4f}")
+```
+
+* **Exemplo em R:**
+
+```{r}
+# Valores de Referência
+D3 <- 0
+D4 <- 2.282
+
+# Limites de Controle
+LIC_AT = D3 * mean_range
+LSC_AT = D4 * mean_range
+
+# Impressão dos Resultados
+cat("LIC =", round(LIC_AT, 4), "\n")
+cat("LC =", round(mean_range, 4), "\n")
+cat("LSC =", round(LSC_AT, 4))
+```
+
+3. Construa os dois gráficos.
+
+* **Exemplo em Python:**
+
+```{python}
+# Configurações de Figura
+fig, ax = plt.subplots(figsize=(6, 4), dpi=600)
+
+# Gráfico de Controle
+sns.lineplot(x=np.arange(1, len(arr) + 1), y=row_mean, marker="o", color="black", ax=ax)
+ax.axhline(mean_X_bar, color="blue", label=f"Média = {mean_X_bar:.2f}", linewidth=1.5)
+ax.axhline(LIC_X_bar, color="red", linestyle="--", label=f"LIC = {LIC_X_bar:.2f}", linewidth=1.5)
+ax.axhline(LSC_X_bar, color="red", linestyle="--", label=f"LSC = {LSC_X_bar:.2f}", linewidth=1.5)
+
+# Configurações de eixos e títulos
+ax.set_title(r"Gráfico de Controle $\bar{X}$", fontsize=12, weight="bold")
+ax.set_xlabel("Amostras", fontsize=12)
+ax.set_ylabel("Medições", fontsize=12)
+
+# Configuração de Legenda
+ax.legend(loc="lower center", prop={"size": 10}, ncol=3, bbox_to_anchor=(0.5, - 0.25), frameon=False)
+
+# Outras configurações
+ax.spines["top"].set_visible(False)
+ax.spines["right"].set_visible(False)
+
+# Exibição da Figura
+plt.show()
+
+# -----------------------------
+
+# Configurações de Figura
+fig, ax = plt.subplots(figsize=(6, 4), dpi=600)
+
+# Gráfico de Controle
+sns.lineplot(x=np.arange(1, len(arr) + 1), y=row_range, marker="o", color="black", ax=ax)
+ax.axhline(mean_range, color="blue", label=r"$\bar{AT}$"+f" = {mean_range:.2f}", linewidth=1.5)
+ax.axhline(LIC_AT, color="red", linestyle="--", label=f"LIC = {LIC_AT:.2f}", linewidth=1.5)
+ax.axhline(LSC_AT, color="red", linestyle="--", label=f"LSC = {LSC_AT:.2f}", linewidth=1.5)
+
+# Configurações de eixos e títulos
+ax.set_title(r"Gráfico de Controle $AT$", fontsize=12, weight="bold")
+ax.set_xlabel("Amostras", fontsize=12)
+ax.set_ylabel("Medições", fontsize=12)
+
+# Configuração de Legenda
+ax.legend(loc="lower center", prop={"size": 10}, ncol=3, bbox_to_anchor=(0.5, - 0.25), frameon=False)
+
+# Outras configurações
+ax.spines["top"].set_visible(False)
+ax.spines["right"].set_visible(False)
+
+# Exibição da Figura
+plt.show()
+```
+
+* **Exemplo em R:**
+
+```{r}
+ggplot(data = NULL, aes(x = 1:length(row_mean), y = row_mean)) +
+  geom_point(color = "black", size = 2) +
+  geom_line(color = "black") +
+  geom_hline(aes(yintercept = mean_X_bar, color = "Média Geral"), linewidth = 1) +
+  geom_hline(aes(yintercept = LIC_X_bar, color = "LIC"), linetype = 2, linewidth = 1) +
+  geom_hline(aes(yintercept = LSC_X_bar, color = "LSC"), linetype = 2, linewidth = 1) +
+  scale_color_manual(
+    name = NULL,
+    values = c("LIC" = "red", "LSC" = "red", "Média Geral" = "blue"),
+    labels = c(
+      bquote(LIC == .(LIC_X_bar)), 
+      bquote(LSC == .(LSC_X_bar)), 
+      bquote(hat(mu) == .(mean_X_bar))
+    )
+  ) +
+  labs(
+    x = "Amostra",
+    y = "Medidas",
+    title = bquote("Gráfico de" ~ bar(X))
+  ) +
+  theme_classic(base_size = 12) +
+  theme(legend.position = "top")
+
+# -----------------------------
+
+ggplot(data = NULL, aes(x = 1:length(row_range), y = row_range)) +
+  geom_point(color = "black", size = 2) +
+  geom_line(color = "black") +
+  geom_hline(aes(yintercept = mean_range, color = "Amplitude Média"), linewidth = 1) +
+  geom_hline(aes(yintercept = LIC_AT, color = "LIC"), linetype = 2, linewidth = 1) +
+  geom_hline(aes(yintercept = LSC_AT, color = "LSC"), linetype = 2, linewidth = 1) +
+  scale_color_manual(
+    name = NULL,
+    values = c("LIC" = "red", "LSC" = "red", "Amplitude Média" = "blue"),
+    labels = c(
+      bquote(bar(AT) == .(mean_range)),
+      bquote(LIC == .(LIC_AT)), 
+      bquote(LSC == .(LSC_AT))
+    )
+  ) +
+  labs(
+    x = "Amostra",
+    y = "Medidas",
+    title = bquote("Gráfico de" ~ AT)
+  ) +
+  theme_classic(base_size = 12) +
+  theme(legend.position = "top")
+```
+
+4. Calcule o desvio padrão de cada subgrupo.
+
+* **Exemplo em Python:**
+
+```{python}
+# Desvio Padrão por Linha
+row_std = np.std(arr, axis=1)
+
+# Visualizar
+row_std
+```
+
+* **Exemplo em R:**
+
+```{r}
+# Desvio Padrão por Linha
+row_std = apply(tbl.df, 1, sd)
+
+# Visualizar
+row_std
+```
+
+5. Calcule a média dos desvios $\bar{S}$ e os limites de controle do gráfico $S$.
+
+* **Exemplo em Python:**
+
+```{python}
+# Média do Desvio Padrão
+mean_S = np.mean(row_std)
+
+# Valores de Referência
+B3 = 0
+B4 = 2.266
+
+# Limites de Controle
+LIC_S = B3 * mean_S
+LSC_S = B4 * mean_S
+
+# Impressão dos Resultados
+print(f"LIC = {LIC_S:.4f}")
+print(f"LC = {mean_S:.4f}")
+print(f"LSC = {LSC_S:.4f}")
+```
+
+* **Exemplo em R:**
+
+```{r}
+# Média do Desvio Padrão
+mean_S <- mean(row_std)
+
+# Valores de Referência
+B3 <- 0
+B4 <- 2.266
+
+# Limites de Controle
+LIC_S = B3 * mean_S
+LSC_S = B4 * mean_S
+
+# Impressão dos Resultados
+cat("LIC =", round(LIC_S, 4), "\n")
+cat("LC =", round(mean_S, 4), "\n")
+cat("LSC =", round(LSC_S, 4))
+```
+
+6. Construa o gráfico do Desvio Padrão.
+
+* **Exemplo em Python:**
+
+```{python}
+# Configurações de Figura
+fig, ax = plt.subplots(figsize=(6, 4), dpi=600)
+
+# Gráfico de Controle
+sns.lineplot(x=np.arange(1, len(arr) + 1), y=row_std, marker="o", color="black", ax=ax)
+ax.axhline(mean_S, color="blue", label=r"Desvio Padrão Médio ($\bar{S}$)"+f" = {mean_range:.2f}", linewidth=1.5)
+ax.axhline(LIC_S, color="red", linestyle="--", label=f"LIC = {LIC_S:.2f}", linewidth=1.5)
+ax.axhline(LSC_S, color="red", linestyle="--", label=f"LSC = {LSC_S:.2f}", linewidth=1.5)
+
+# Configurações de eixos e títulos
+ax.set_title(r"Gráfico de Controle $S$", fontsize=12, weight="bold")
+ax.set_xlabel("Amostras", fontsize=12)
+ax.set_ylabel("Medições", fontsize=12)
+
+# Configuração de Legenda
+ax.legend(loc="lower center", prop={"size": 10}, ncol=3, bbox_to_anchor=(0.5, - 0.25), frameon=False)
+
+# Outras configurações
+ax.spines["top"].set_visible(False)
+ax.spines["right"].set_visible(False)
+
+# Exibição da Figura
+plt.show()
+```
+
+* **Exemplo em R:**
+
+```{r}
+ggplot(data = NULL, aes(x = 1:length(row_std), y = row_std)) +
+  geom_point(color = "black", size = 2) +
+  geom_line(color = "black") +
+  geom_hline(aes(yintercept = mean_S, color = "Desvio Padrão Médio"), linewidth = 1) +
+  geom_hline(aes(yintercept = LIC_S, color = "LIC"), linetype = 2, linewidth = 1) +
+  geom_hline(aes(yintercept = LSC_S, color = "LSC"), linetype = 2, linewidth = 1) +
+  scale_color_manual(
+    name = NULL,
+    values = c("LIC" = "red", "LSC" = "red", "Desvio Padrão Médio" = "blue"),
+    labels = c(
+      bquote(bar(S) == .(mean_S)),
+      bquote(LIC == .(LIC_S)), 
+      bquote(LSC == .(LSC_S))
+    )
+  ) +
+  labs(
+    x = "Amostra",
+    y = "Medidas",
+    title = bquote("Gráfico de" ~ S)
+  ) +
+  theme_classic(base_size = 12) +
+  theme(legend.position = "top")
+```
+
+7. Alguma amostra está fora dos limites de controle?
+
+* **Exemplo em Python:**
+
+```{python}
+print("Não. Nenhuma amostra se encontra fora de controle!")
+```
+
+* **Exemplo em R:**
+
+```{r}
+print("Não. Nenhuma amostra se encontra fora de controle!")
+```
+
+8. Há alguma tendência ou padrão preocupante mesmo com os pontos dentro dos limites?
+
+* **Exemplo em Python:**
+
+```{python}
+print("Aparentemente não! As amostras estão dispersas de forma aleatória, sem padrões visíveis.")
+```
+
+* **Exemplo em R:**
+
+```{r}
+print("Aparentemente não! As amostras estão dispersas de forma aleatória, sem padrões visíveis.")
+```
+
+9. O processo pode ser considerado sob controle estatístico?
+
+* **Exemplo em Python:**
+
+```{python}
+print("Sim. As amostras estão dispersas de forma aleatória, sem padrões visíveis e todas dentro dos Limites de Controle.")
+```
+
+* **Exemplo em R:**
+
+```{r}
+print("Sim. As amostras estão dispersas de forma aleatória, sem padrões visíveis e todas dentro dos Limites de Controle.")
+```
+
+10. Compare o gráficos $\bar{X}$ e $AT$ com o gráfico $\bar{X}$ e $S$.
+
+    a. Qual parece mais sensível às variações nos dados?
+    b. Qual seria mais indicado para subgrupos maiores que 10?
+    c. Em que situações o gráfico de variância seria mais apropriado?
+
+* **Exemplo em Python:**
+
+```{python}
+# Valor de Referência
+A2 = 0.729
+
+# Limites de Controle
+LIC_X_bar = mean_X_bar - A2 * mean_range
+LSC_X_bar = mean_X_bar + A2 * mean_range
+
+# Impressão dos Resultados
+print(f"LIC = {LIC_X_bar:.4f}")
+print(f"LC = {mean_X_bar:.4f}")
+print(f"LSC = {LSC_X_bar:.4f}")
+
+# Configurações de Figura
+fig, ax = plt.subplots(figsize=(6, 4), dpi=600)
+
+# Gráfico de Controle
+sns.lineplot(x=np.arange(1, len(arr) + 1), y=row_mean, marker="o", color="black", ax=ax)
+ax.axhline(mean_X_bar, color="blue", label=f"Média = {mean_X_bar:.2f}", linewidth=1.5)
+ax.axhline(LIC_X_bar, color="red", linestyle="--", label=f"LIC = {LIC_X_bar:.2f}", linewidth=1.5)
+ax.axhline(LSC_X_bar, color="red", linestyle="--", label=f"LSC = {LSC_X_bar:.2f}", linewidth=1.5)
+
+# Configurações de eixos e títulos
+ax.set_title(r"Gráfico de Controle $\bar{X}$ & $AT$", fontsize=12, weight="bold")
+ax.set_xlabel("Amostras", fontsize=12)
+ax.set_ylabel("Medições", fontsize=12)
+
+# Configuração de Legenda
+ax.legend(loc="lower center", prop={"size": 10}, ncol=3, bbox_to_anchor=(0.5, - 0.25), frameon=False)
+
+# Outras configurações
+ax.spines["top"].set_visible(False)
+ax.spines["right"].set_visible(False)
+
+# Exibição da Figura
+plt.show()
+
+# -----------------------------
+
+# Valor de Referência
+A3 = 1.628
+
+# Limites de Controle
+LIC_X_bar = mean_X_bar - A3 * mean_S
+LSC_X_bar = mean_X_bar + A3 * mean_S
+
+# Impressão dos Resultados
+print(f"LIC = {LIC_X_bar:.4f}")
+print(f"LC = {mean_X_bar:.4f}")
+print(f"LSC = {LSC_X_bar:.4f}")
+
+# Configurações de Figura
+fig, ax = plt.subplots(figsize=(6, 4), dpi=600)
+
+# Gráfico de Controle
+sns.lineplot(x=np.arange(1, len(arr) + 1), y=row_mean, marker="o", color="black", ax=ax)
+ax.axhline(mean_X_bar, color="blue", label=f"Média = {mean_X_bar:.2f}", linewidth=1.5)
+ax.axhline(LIC_X_bar, color="red", linestyle="--", label=f"LIC = {LIC_X_bar:.2f}", linewidth=1.5)
+ax.axhline(LSC_X_bar, color="red", linestyle="--", label=f"LSC = {LSC_X_bar:.2f}", linewidth=1.5)
+
+# Configurações de eixos e títulos
+ax.set_title(r"Gráfico de Controle $\bar{X}$ & $S$", fontsize=12, weight="bold")
+ax.set_xlabel("Amostras", fontsize=12)
+ax.set_ylabel("Medições", fontsize=12)
+
+# Configuração de Legenda
+ax.legend(loc="lower center", prop={"size": 10}, ncol=3, bbox_to_anchor=(0.5, - 0.25), frameon=False)
+
+# Outras configurações
+ax.spines["top"].set_visible(False)
+ax.spines["right"].set_visible(False)
+
+# Exibição da Figura
+plt.show()
+
+# ----------------------------------------------------------------------
+#    a. Qual parece mais sensível às variações nos dados?
+# ----------------------------------------------------------------------
+
+print("O gráfico de controle com base no desvio padrão (S) apresentou limites ligeiramente maiores que o gráfico de controle com base na amplitude (AT).")
+
+# ----------------------------------------------------------------------
+#    b. Qual seria mais indicado para subgrupos maiores que 10?
+# ----------------------------------------------------------------------
+
+print("O mais indicado para amostras maiores que 10 é o gráfico de controle com base no desvio padrão (S).")
+
+# ----------------------------------------------------------------------
+#    c. Em que situações o gráfico de variância seria mais apropriado?
+# ----------------------------------------------------------------------
+
+print("Sob o mesmo raciocínio do item anterior, o gráfico de controle com base no desvio padrão é mais indicado para amostras maiores que 10.")
+```
+
+* **Exemplo em R:**
+
+```{r}
+# Valor de Referência
+A2 <- 0.729
+
+# Limites de Controle
+LIC_X_bar <- mean_X_bar - A2 * mean_range
+LSC_X_bar <- mean_X_bar + A2 * mean_range
+
+# Impressão dos Resultados
+cat("LIC =", round(LIC_X_bar, 4), "\n")
+cat("LC =", round(mean_X_bar, 4), "\n")
+cat("LSC =", round(LSC_X_bar, 4))
+
+ggplot(data = NULL, aes(x = 1:length(row_mean), y = row_mean)) +
+  geom_point(color = "black", size = 2) +
+  geom_line(color = "black") +
+  geom_hline(aes(yintercept = mean_X_bar, color = "Média Geral"), linewidth = 1) +
+  geom_hline(aes(yintercept = LIC_X_bar, color = "LIC"), linetype = 2, linewidth = 1) +
+  geom_hline(aes(yintercept = LSC_X_bar, color = "LSC"), linetype = 2, linewidth = 1) +
+  scale_color_manual(
+    name = NULL,
+    values = c("LIC" = "red", "LSC" = "red", "Média Geral" = "blue"),
+    labels = c(
+      bquote(LIC == .(LIC_X_bar)), 
+      bquote(LSC == .(LSC_X_bar)), 
+      bquote(hat(mu) == .(mean_X_bar))
+    )
+  ) +
+  labs(
+    x = "Amostra",
+    y = "Medidas",
+    title = bquote("Gráfico de" ~ bar(X) ~ "com Variação em" ~ AT)
+  ) +
+  theme_classic(base_size = 12) +
+  theme(legend.position = "top")
+
+# -----------------------------
+
+# Valor de Referência
+A3 <- 1.628
+
+# Limites de Controle
+LIC_X_bar <- mean_X_bar - A3 * mean_S
+LSC_X_bar <- mean_X_bar + A3 * mean_S
+
+# Impressão dos Resultados
+cat("LIC =", round(LIC_X_bar, 4), "\n")
+cat("LC =", round(mean_X_bar, 4), "\n")
+cat("LSC =", round(LSC_X_bar, 4))
+
+ggplot(data = NULL, aes(x = 1:length(row_mean), y = row_mean)) +
+  geom_point(color = "black", size = 2) +
+  geom_line(color = "black") +
+  geom_hline(aes(yintercept = mean_X_bar, color = "Média Geral"), linewidth = 1) +
+  geom_hline(aes(yintercept = LIC_X_bar, color = "LIC"), linetype = 2, linewidth = 1) +
+  geom_hline(aes(yintercept = LSC_X_bar, color = "LSC"), linetype = 2, linewidth = 1) +
+  scale_color_manual(
+    name = NULL,
+    values = c("LIC" = "red", "LSC" = "red", "Média Geral" = "blue"),
+    labels = c(
+      bquote(LIC == .(LIC_X_bar)), 
+      bquote(LSC == .(LSC_X_bar)), 
+      bquote(hat(mu) == .(mean_X_bar))
+    )
+  ) +
+  labs(
+    x = "Amostra",
+    y = "Medidas",
+    title = bquote("Gráfico de" ~ bar(X) ~ "com Variação em" ~ S)
+  ) +
+  theme_classic(base_size = 12) +
+  theme(legend.position = "top")
+
+# ----------------------------------------------------------------------
+#    a. Qual parece mais sensível às variações nos dados?
+# ----------------------------------------------------------------------
+
+print("O gráfico de controle com base no desvio padrão (S) apresentou limites ligeiramente maiores que o gráfico de controle com base na amplitude (AT).")
+
+# ----------------------------------------------------------------------
+#    b. Qual seria mais indicado para subgrupos maiores que 10?
+# ----------------------------------------------------------------------
+
+print("O mais indicado para amostras maiores que 10 é o gráfico de controle com base no desvio padrão (S).")
+
+# ----------------------------------------------------------------------
+#    c. Em que situações o gráfico de variância seria mais apropriado?
+# ----------------------------------------------------------------------
+
+print("Sob o mesmo raciocínio do item anterior, o gráfico de controle com base no desvio padrão é mais indicado para amostras maiores que 10.")
+```
+
+### Considerações Finais
+
+* A escolha entre amplitude ou desvio padrão depende do tamanho da amostra. ✅
+* Gráficos de variância são mais sensíveis, mas menos utilizados. ✅
+* Gráficos $\bar{X}$ e $AT$ são os mais comuns na prática industrial. ✅
+
 :::: progress
 :::: {.progress-bar style="width: 100%;"}
 ::::
